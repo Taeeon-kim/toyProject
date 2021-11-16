@@ -22,7 +22,8 @@ render(){    //랜더는 필수적으로 있어야함
   console.log(this.state.list);
   return(
     <div className = "App">
-      <MyStyled/>
+      <MyStyled Bg_color={"red"}/>
+
       {/* <div className="container">
         <h1>내 버킷리스트 </h1>
         <hr class ="line"/>
@@ -36,8 +37,9 @@ render(){    //랜더는 필수적으로 있어야함
 
 const MyStyled = styled.div`
   width : 50vw;
-  min-height:150 px;
+  height: 150px;
   background: purple;
+  background-color: ${(props) => (props.Bg_color)};
 `;
 //   );
  
