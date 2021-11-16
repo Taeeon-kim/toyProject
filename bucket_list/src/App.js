@@ -22,7 +22,9 @@ render(){    //랜더는 필수적으로 있어야함
   console.log(this.state.list);
   return(
     <div className = "App">
-      <MyStyled Bg_color={"red"}/>
+      <MyStyled Bg_color={"red"}>
+        <p>i'm here</p>
+      </MyStyled>
 
       {/* <div className="container">
         <h1>내 버킷리스트 </h1>
@@ -40,6 +42,12 @@ const MyStyled = styled.div`
   height: 150px;
   background: purple;
   background-color: ${(props) => (props.Bg_color)};
+  p {
+    color : white;
+  }
+  &:hover{
+    background-color : yellow;   //Styled 컴포넌트 안에서쓰는 scss 문법 &은 자기자신을 나타냄 그리고 &: hover 라는건 자기자신에게 hover(마우스올림)이 발생하면 실행됨
+  }
 `;
 //   );
  
