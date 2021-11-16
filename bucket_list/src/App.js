@@ -39,7 +39,6 @@ const MyStyled = styled.div`
   min-height:150 px;
   background: purple;
 `;
-
 //   );
  
 // function App() {  // 함수형 컴포넌트
