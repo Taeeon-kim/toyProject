@@ -5,28 +5,3 @@
     display: flex;
 }
 
-.container{
-    width: 50vw;
-    background-color: #fff;
-    max-width: 350px;   /*화면을 키우고 줄이고 할때 크기에 따라 넓이가 달라진다 width 를 vw로 썼기때문에 비율인데, 이때 350px로 제한하면 그이상 안늘어난다*/
-    margin: auto; /*auto로 하면 좌우가 센터에 온다, 높이는 적용안됨*/
-    height: 80vh;
-    padding: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.container > .line{
-    margin: 16px 0px ; /*이렇게 두개만 쓰면 처음이 위아래, 두번째가 좌우를 나타낸다*/
-}
-
-.container > h1 {     /*h1 은 태그이기때문에 .이나 # 안쓰고 그대로 쓴다*/
-    color: slateblue;
-    text-align: center;
-}
-
-.list-item{
-    padding: 16px;
-    margin: 8px;
-    background-color: aliceblue;
-}

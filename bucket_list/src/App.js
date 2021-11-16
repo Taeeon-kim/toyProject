@@ -8,13 +8,13 @@ import BucketList from './BucketList';
 import "./style.css";
 import styled from "styled-components"
 
+
 class App extends React.Component{      //부모 React의 Component를 상속가져옴
 constructor(props){                         // 클래스이므로 초기화해줄 초기화함수 constructor 를 생성
   super(props);
 
   this.state ={                               // 내 컴포넌트가 가지고있는 데이터, App 클래스에 state 라는 데이터를 넣어줌
      list : ["영화관 가기", "매일 책읽기", "수영 배우기"],
-
   }
 }
 
@@ -22,40 +22,78 @@ render(){    //랜더는 필수적으로 있어야함
   console.log(this.state.list);
   return(
     <div className = "App">
-      <MyStyled Bg_color={"red"}>
+      {/* <MyStyled Bg_color={"red"}>
         <p>i'm here</p>
-      </MyStyled>
-
+      </MyStyled> */}
       {/* <div className="container">
-        <h1>내 버킷리스트 </h1>
-        <hr class ="line"/>
-        <BucketList list={this.state.list} />  어떤 이름으로 넘겨줄지 적어주고 해당하는 데이터를 넣어줌, 이때 BucketList.js로 넘거가기때문에 매개변수 props에 들어간다
+        {/* <MyStyled list={this.state.list} Bg_color={"red"} >
+            <h1>내 버킷리스트 </h1>
+            <hr class ="line"/>
+        </MyStyled> 
       </div> */}
+
+      <Container className="container">
+        <Title>내 버킷리스트 </Title>
+        {/* <hr class ="line"/> */}
+        <Line/>
+        <BucketList list={this.state.list} />  {/*어떤 이름으로 넘겨줄지 적어주고 해당하는 데이터를 넣어줌, 이때 BucketList.js로 넘거가기때문에 매개변수 props에 들어간다*/}
+      </Container>
+
     </div>
   );
 }
 
 }
 
-const MyStyled = styled.div`
-  width : 50vw;
-  height: 150px;
-  background: purple;
-  background-color: ${(props) => (props.Bg_color)};
-  p {
-    color : white;
-  }
-  &:hover{
-    background-color : yellow;   //Styled 컴포넌트 안에서쓰는 scss 문법 &은 자기자신을 나타냄 그리고 &: hover 라는건 자기자신에게 hover(마우스올림)이 발생하면 실행됨
-  }
+
+const Container = styled.div`
+  width: 50vw;
+  background-color: #fff;
+  max-width: 350px;   
+  margin: auto; 
+  height: 80vh;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 `;
-//   );
+
+const Title = styled.h1`
+color: slateblue;
+  text-align: center;
+`;
+
+const Line = styled.hr`
+margin: 16px 0px; 
+`;
+
+
+
+
+
+
+
+// const MyStyled = styled.div`
+//   width : 50vw;
+//   height: 150px;
+//   background: purple;
+//   background-color: ${(props) => (props.Bg_color)};
+//   p {
+//     color : white;
+//   }
+//   &:hover{
+//     background-color : yellow;   //Styled 컴포넌트 안에서쓰는 scss 문법 &은 자기자신을 나타냄 그리고 &: hover 라는건 자기자신에게 hover(마우스올림)이 발생하면 실행됨
+//   }
+// `;
+
+
+  // );
  
 // function App() {  // 함수형 컴포넌트
 //   return (
 //     <div className="App">
 //       <BucketList />      {/*자식 컴포넌트를 불러옴*/}
 //     </div>
+//     )
 // }
 
 export default App;
