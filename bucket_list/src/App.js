@@ -16,28 +16,32 @@ constructor(props){                         // 클래스이므로 초기화해�
   this.state ={                               // 내 컴포넌트가 가지고있는 데이터, App 클래스에 state 라는 데이터를 넣어줌
      list : ["영화관 가기", "매일 책읽기", "수영 배우기"],
   }
+  this.text = React.createRef();
+}
+componentDidMount(){
+  console.log(this.text)
+  console.log(this.text.current.value)
 }
 
 render(){    //랜더는 필수적으로 있어야함
-  console.log(this.state.list);
+  console.log(this.text.current)
   return(
     <div className = "App">
-      {/* <MyStyled Bg_color={"red"}>
-        <p>i'm here</p>
-      </MyStyled> */}
-      {/* <div className="container">
-        {/* <MyStyled list={this.state.list} Bg_color={"red"} >
-            <h1>내 버킷리스트 </h1>
-            <hr class ="line"/>
-        </MyStyled> 
-      </div> */}
-
+    
       <Container className="container">
         <Title>내 버킷리스트 </Title>
         {/* <hr class ="line"/> */}
         <Line/>
         <BucketList list={this.state.list} />  {/*어떤 이름으로 넘겨줄지 적어주고 해당하는 데이터를 넣어줌, 이때 BucketList.js로 넘거가기때문에 매개변수 props에 들어간다*/}
       </Container>
+
+      <div>
+        <input type="text" ref={this.text}
+        onChange={() =>{ console.log(this.text.current.value)
+        }
+        }/>
+      </div>
+
 
     </div>
   );
