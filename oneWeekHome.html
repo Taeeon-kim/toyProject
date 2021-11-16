@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>
+ 리액트1주차
+</title>
+
+<style>
+
+    #title{
+        margin-left: 20px;
+    }
+    .input{
+        width: 150px;
+    }
+    .wrap{
+        display: flex;
+    }
+    
+    .box{
+        border: 2px solid black;
+        width: 200px;
+        margin:20px;
+        padding: 0px 0px 0px 5px;
+    }
+    #button{
+        font-size:20px;
+        border:white;
+        margin-bottom: 10px;
+        background-color: grey;
+    }
+    #add-button{
+        font-size:20px;
+        width: 150px;
+        border: blanchedalmond;
+        background-color: grey ;
+    }
+
+</style>
+</head>
+<body>
+    <h1 id="title">오늘 할 일 </h1>
+    <div class="wrap">
+        <div class="card-list">
+            
+        </div>
+        <!-- <div id="popUp" class="box">
+            <h1>독서하기</h1>
+            <button id="button">완료</button>
+        </div> -->
+        <div class="input">
+            <p><input id="input-box" type="text" placeholder="입력하기 ..."></input></p>
+            <button onClick="addingContent()" id="add-button">추가</button>
+        </div>
+    </div>
+    <div>
+        
+    </div>
+    <script>
+        function addingContent(){
+        //     <!-- <div id="popUp" class="box">
+            const title = document.createElement("div");
+            // title.textContent = document.getElementById("input-box"); // 여긴 백그라운드 색상만 넣어주면된다.
+            title.id = "popUp";
+            title.className = "box";
+
+        //     <h1>독서하기</h1>
+            const phrase = document.createElement("h1");
+            phrase.textContent=document.getElementById("input-box").value;
+            
+        //     <button id="button">완료</button>
+            const buttn = document.createElement("button");
+            buttn.textContent= "완료";
+            buttn.id = "button";
+
+            title.appendChild(phrase);
+            title.appendChild(buttn);
+
+            document.getElementsByClassName("card-list")[0].appendChild(title)
+            console.log(document.getElementsByClassName("card-list"))
+        // </div> -->
+        }
+    </script>
+</body>
+</html>
