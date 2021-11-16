@@ -11,8 +11,7 @@ const Nemo = (props) => {
     const minusCount =() => {
        count>0 ? setCount(count-1) : window.alert("네모가 없네요")
     };
-    console.log(count);
-   
+    
     return (
         <> {nemo_count.map((n, i) => {
             return ( <div key = {i} style={{
@@ -26,7 +25,7 @@ const Nemo = (props) => {
           }   
           )}
       <div>
-        <button onClick={addCount  }>하나 추가</button>
+        <button onClick={addCount}>하나 추가</button>
         <button onClick={minusCount }>하나 빼기</button>
       </div></>
 
