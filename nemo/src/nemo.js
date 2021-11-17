@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 const Nemo = (props) => {
     
-    const [cou nt, setCount] = useState(3);
+    const [count, setCount] = useState(3);
     const nemo_count = Array.from({length: count}, (v,i)=>i)
     const addCount = () => {
         setCount(count+1)
