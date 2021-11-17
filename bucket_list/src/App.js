@@ -5,7 +5,7 @@ import React from 'react';
 import BucketList from './BucketList';
 // import {BucketList} from './BucketList';   // ./는 지금 내가 있는 경로 이고 ../ 를 쓰면 위로 올라감 두개위로 올라가고싶으면 ../../ 하면됨
 
-import "./style.css";
+
 import styled from "styled-components"
 
 
@@ -15,6 +15,7 @@ constructor(props){                         // 클래스이므로 초기화해�
 
   this.state ={                               // 내 컴포넌트가 가지고있는 데이터, App 클래스에 state 라는 데이터를 넣어줌
      list : ["영화관 가기", "매일 책읽기", "수영 배우기"],
+     
   }
   this.text = React.createRef();
 }
@@ -22,35 +23,51 @@ componentDidMount(){
   console.log(this.text)
   console.log(this.text.current.value)
 }
+componentDidUpdate(){
+  console.log("업데이트 될때 뜸")
+}
+
+addingInput = () =>{
+  // this.state.list.push(this.text.current.value)
+  const newItem = this.text.current.value;
+  this.setState({ list: [...this.state.list, newItem]});
+  console.log("클릭")
+  console.log(this.state.list)
+};
 
 render(){    //랜더는 필수적으로 있어야함
-  console.log(this.text.current)
+  console.log(this.state.list)
   return(
-    <div className = "App">
+    <AppWrap className = "App">
     
       <Container className="container">
-        <Title>내 버킷리스트 </Title>
+         <Title>내 버킷리스트 </Title>
         {/* <hr class ="line"/> */}
-        <Line/>
-        <BucketList list={this.state.list} />  {/*어떤 이름으로 넘겨줄지 적어주고 해당하는 데이터를 넣어줌, 이때 BucketList.js로 넘거가기때문에 매개변수 props에 들어간다*/}
+         <Line/>
+         <BucketList list={this.state.list} />  {/*어떤 이름으로 넘겨줄지 적어주고 해당하는 데이터를 넣어줌, 이때 BucketList.js로 넘거가기때문에 매개변수 props에 들어간다*/}
+        
       </Container>
+      <AddInput >
+            <input type="text" ref={this.text}/>
+            <button onClick = {() =>this.addingInput()}>추가하기</button>
+      </AddInput>
 
-      <div>
-        <input type="text" ref={this.text}
-        onChange={() =>{ console.log(this.text.current.value)
-        }
-        }/>
-      </div>
-
-
-    </div>
+    </AppWrap>
   );
 }
 
 }
 
+const AppWrap = styled.div`
+  background-color: #eee;
+  height: 100vh;  /*vh 는 화면 비율, 즉 화면의 100프로만큼 height을 넣어줌*/
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
 
+`;
 const Container = styled.div`
+  
   width: 50vw;
   background-color: #fff;
   max-width: 350px;   
@@ -62,16 +79,25 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-color: slateblue;
+  color: slateblue;
   text-align: center;
 `;
 
 const Line = styled.hr`
-margin: 16px 0px; 
+  margin: 16px 0px; 
 `;
 
+const AddInput = styled.div`
+width: 50vw;
+background-color: #fff;
+max-width: 350px;   
+margin: auto; 
+height: 50px;
+padding: 16px;
+border: 1px solid #ddd;
+border-radius: 5px;
 
-
+`;
 
 
 

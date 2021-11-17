@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 const Nemo = (props) => {
     
-    const [count, setCount] = useState(3);
+    const [cou nt, setCount] = useState(3);
     const nemo_count = Array.from({length: count}, (v,i)=>i)
     const addCount = () => {
         setCount(count+1)
@@ -25,7 +25,7 @@ const Nemo = (props) => {
           }   
           )}
       <div>
-        <button onClick={addCount}>하나 추가</button>
+        <button onClick={addCount}>하나 추가</button> 
         <button onClick={minusCount }>하나 빼기</button>
       </div></>
 

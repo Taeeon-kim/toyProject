@@ -3,5 +3,6 @@
     height: 100vh;  /*vh 는 화면 비율, 즉 화면의 100프로만큼 height을 넣어줌*/
     width: 100vw;
     display: flex;
+    flex-direction: column;
 }
 
