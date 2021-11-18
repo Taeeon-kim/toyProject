@@ -7,7 +7,7 @@ const Review = (props) => {
     const history = useHistory();
     console.log(props);
     let buttons;
- 
+     
     const clickEvent = (index) => {
         for(let i=0; i<buttons.length;i++ )
         {buttons[i].style.background = "gray" }
@@ -34,7 +34,7 @@ return () => {buttons = document.getElementsByClassName("buttn"); }// componentW
             
         </Center>
         <button onClick={ () => {
-           history.goBack()}} 
+           history.push("/")}} 
            style={{backgroundColor:"purple", color : "white", border : "1px solid purple", padding:"10px", width:"30vw"}}>평점 남기기</button>
         </Wrap>
     );
