@@ -2,7 +2,7 @@ import React from "react";
 import img from "./lmg_01.png" 
 const Start = (props) => {
     console.log(props)
-    return (
+    return (<div>
     <div style = {{            //인라인 스타일로 씀 
         display : "flex",
         flexDirection : "column",
@@ -43,7 +43,7 @@ const Start = (props) => {
            borderRadius :"30px",
 
        }}>시작하기</button>
-    </div>);
+    </div></div>);
 }
 
 export default Start;

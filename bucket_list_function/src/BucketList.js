@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const BucketList = (props) => {
 const history = useHistory();
-const my_lists = props.list;
+const my_lists = props.list; 
 
 return (
 <ListStyle>
