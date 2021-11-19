@@ -123,7 +123,7 @@ return () => {buttons = document.getElementsByClassName("buttn"); }// componentW
       </Wrap>
       </Route>
    
-      <Route path="/review" >
+      <Route path="/review" exact>
         <Review name={name}/>
       </Route>
     </div>
