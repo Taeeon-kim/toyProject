@@ -2,7 +2,7 @@ import './index'
 import './App.css';
 import React from 'react';
 import styled from 'styled-components'
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import Review from './Review';
 import { useHistory } from "react-router";
 
@@ -20,8 +20,6 @@ function RandomStar() {
   for(let j=0; j<count;j++)
    {buttons[j].style.background = "green" } 
 }
-
-
 React.useEffect(() => {   //useEffect는 리액트 hook 중에하나다. 처음 랜더링할때 무조건 한번 () => 부분이 실행되고(Didmount와 같은 동작), 두번째랜더링(리랜더링)때는 화살표함수를 무조건 실행하는게 아니라 [] 부분에 들어가있는 요소를 
   
     for(let i=1; i<8;i++ )
@@ -33,7 +31,7 @@ React.useEffect(() => {   //useEffect는 리액트 hook 중에하나다. 처음 
    
                    //확인하고 바뀐게 있는지 보고 바뀐게 있으면 화살표함수를 실행한다(DidUpdate와 같은 동작). 만약 아무것도 바뀐게 ∂없거나 dependency array부분이 비어있다면 화살표함수는 실행되지 않는다(DidMount와 같은동작)
 // buttons[0].addEventListener("click",clickEvent)      //이벤트리스너함수를 쓸수있는곳은 didMount 와 같은 기능을 하는곳에 넣어주면 된다.
-return () => {buttons = document.getElementsByClassName; }// componentWillUnmount 때 동작하는 부분이 여기다. 이때 return 다음 () => 을 쓰는 문법을 잘알아둘것 그냥 Return하면 제대로 작동안한다
+return () => {buttons = document.getElementsByClassName("buttn"); }// componentWillUnmount 때 동작하는 부분이 여기다. 이때 return 다음 () => 을 쓰는 문법을 잘알아둘것 그냥 Return하면 제대로 작동안한다
 }, []); 
 
   return (
@@ -48,6 +46,7 @@ return () => {buttons = document.getElementsByClassName; }// componentWillUnmoun
             <Circle className="buttn1"/>
             <Circle className="buttn1"/>
             <Circle className="buttn1"/>
+
             <Triangle onClick={()=>{
                  history.push("/review/일");
                  setName(name="일요일");
@@ -70,10 +69,11 @@ return () => {buttons = document.getElementsByClassName; }// componentWillUnmoun
             <Circle className="buttn3"/>
             <Circle className="buttn3"/>
             <Circle className="buttn3"/>
+            <Link to = "/review/화" >
             <Triangle onClick={()=>{
                  history.push("/review/화");
                  setName(name="화요일");
-             }} />
+             }} /></Link>
         </Center>
         <Center><Font>수</Font>
             <Circle className="buttn4"/>
