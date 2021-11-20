@@ -34,7 +34,7 @@ return () => {buttons = document.getElementsByClassName("buttn"); }// componentW
             
         </Center>
         <button onClick={ () => {
-           document.location.href = "/"}} 
+           history.push("/")}} 
            style={{backgroundColor:"purple", color : "white", border : "1px solid purple", padding:"10px", width:"200px"}}>평점 남기기</button>
         </Wrap>
     );
