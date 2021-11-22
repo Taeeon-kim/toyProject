@@ -8,13 +8,24 @@ import Detail from "./Detail";
 import { useDispatch } from "react-redux";
 import {createBucket, removeBucket} from "./redux/modules/bucket";
 import Progress from "./Progress";
+import {db} from "./firebase"
+import {collection, getDoc, getDocs} from "firebase/firestore"
 
 function App() {
 
 const [list, setList] = React.useState(["영화관 가기", "매일 책읽기", "수영 배우기"]);
 const text = React.useRef(null);
 const dispatch = useDispatch();
-console.log(dispatch)
+
+React.useEffect(async()=> {
+    console.log(db)
+    collection(db, "bucket");    //콜렉션정보를 가지고올때 collection을 사용 collection 안에 db정보 넣어주고 컬렉션이름 "bucket" 
+    const query = await getDocs(collection(db, "bucket")) // 콜렉션에 있는 모든 다큐먼트를 가져올수있다. 
+    console.log(query)
+    query.forEach((doc)=>{ 
+        console.log(doc.id, doc.data())
+    } );
+},[])
 
 const addBucketList = () => {
 // 스프레드 문법! 기억하고 계신가요? :) 
