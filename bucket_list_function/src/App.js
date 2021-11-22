@@ -19,7 +19,7 @@ console.log(dispatch)
 const addBucketList = () => {
 // 스프레드 문법! 기억하고 계신가요? :) 
 // 원본 배열 list에 새로운 요소를 추가해주었습니다.
-dispatch(createBucket(text.current.value));
+dispatch(createBucket({text: text.current.value, completed :false}));
 // setList([...list, text.current.value]);
 }
 
@@ -45,6 +45,10 @@ return (
 <input type="text" ref={text} />
 <button onClick={addBucketList}>추가하기</button>
 </Input>
+<button onClick={()=>{
+    window.scrollTo({top: 0, left: 0, behavior: "smooth" })}  // 0,0은 좌표를 말한다.
+
+}>위로 가기</button>
 </div>
 );
 }
@@ -57,6 +61,27 @@ padding: 16px;
 margin: 20px auto;
 border-radius: 5px;
 border: 1px solid #ddd;
+display: flex;
+& > * { padding : 5px}     // > 는 그아래 자식 하위컴포넌트를 나타냄
+& input{
+    border: 1px solid #888;
+    width: 70%;
+    margin-right:  10px;
+    
+}
+& input:focus {
+    outline: none;
+    border: 2px solid #a673ff;
+}
+
+& button {
+    width: 25%;
+    color: #fff;
+    border: #a673ff;
+    background: #a673ff;
+}
+
+
 `;
 
 const Container = styled.div`

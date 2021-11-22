@@ -54,7 +54,7 @@ switch (action.type) {
             if(parseInt(action.bucket_index) === idx){
                 return {...l, completed:true}
             } else {return l}
-        });
+        })
         console.log({list : new_bucket_list})
         return {list : new_bucket_list}
     }

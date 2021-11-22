@@ -33,15 +33,19 @@ return (
 const ListStyle = styled.div`
 display: flex;
 flex-direction: column;
-height: 100%;
+height: 50vh;
 overflow-x: hidden;
-overflow-y: auto;
+overflow-y: scroll;  // scroll로 해주고 자세히보면 웹브라우져에서 스크롤바 위치영역이 보인다.
+max-height: 50vh;
 `;
 
 const ItemStyle = styled.div`
 padding: 16px;
 margin: 8px;
-background-color: ${(props)=>props.completed? "orange" : "aliceblue"};
+color: ${(props) => props.completed? "#fff" : "#333"};
+background-color: ${(props)=>props.completed? "#a673ff" : "aliceblue"};
 `;
+
+
 
 export default BucketList;
