@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const Progress = (props) => {
     const bucket_list = useSelector((state) => (state.bucket.list));
     console.log(bucket_list)
-    
+
     let count = 0;
     bucket_list.map((b,idx) =>
         {
@@ -17,7 +17,7 @@ const Progress = (props) => {
 
     return (
         <ProgressBar>
-            <HighLight width={(count/bucket_list.length)*100}/>
+            <HighLight width={(count/bucket_list.length)*100+"%"}/>
         </ProgressBar>
     )
 }
@@ -29,8 +29,9 @@ const ProgressBar = styled.div`
 `;
 
 const HighLight = styled.div`
-    background-color: ${"orange"};
-    width: ${(props)=> props.width}%;
+    background-color: orange;
+    transition : 1s width;
+    width: ${(props)=> props.width};
     height: 40px;
 `;
 
