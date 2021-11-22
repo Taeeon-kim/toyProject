@@ -2,12 +2,13 @@ import React from "react";
 
 import styled from "styled-components";
 import { useHistory } from "react-router";
-
+import {c} from "./index"
+import b from "./index"
 const Review = (props) => {
     const history = useHistory();
     console.log(props);
     let buttons;
-     
+     console.log(c, b)
     const clickEvent = (index) => {
         for(let i=0; i<buttons.length;i++ )
         {buttons[i].style.background = "gray" }
