@@ -3,13 +3,14 @@ import React from "react";
 // import [컴포넌트 명] from [컴포넌트가 있는 파일경로];
 import BucketList from "./BucketList";
 import styled from "styled-components";
-import { Route, Router} from "react-router";
+import { Route} from "react-router";
 import Detail from "./Detail";
 import { useDispatch } from "react-redux";
-import {createBucket, removeBucket} from "./redux/modules/bucket";
+import { loadBucketFB, addBucketFB} from "./redux/modules/bucket";
 import Progress from "./Progress";
-import {db} from "./firebase"
-import {collection, getDoc, getDocs} from "firebase/firestore"
+
+
+
 
 function App() {
 
@@ -18,19 +19,14 @@ const text = React.useRef(null);
 const dispatch = useDispatch();
 
 React.useEffect(async()=> {
-    console.log(db)
-    collection(db, "bucket");    //콜렉션정보를 가지고올때 collection을 사용 collection 안에 db정보 넣어주고 컬렉션이름 "bucket" 
-    const query = await getDocs(collection(db, "bucket")) // 콜렉션에 있는 모든 다큐먼트를 가져올수있다. 
-    console.log(query)
-    query.forEach((doc)=>{ 
-        console.log(doc.id, doc.data())
-    } );
-},[])
+    dispatch(loadBucketFB());
+}
+,[]);
 
 const addBucketList = () => {
 // 스프레드 문법! 기억하고 계신가요? :) 
 // 원본 배열 list에 새로운 요소를 추가해주었습니다.
-dispatch(createBucket({text: text.current.value, completed :false}));
+dispatch(addBucketFB({text: text.current.value, completed :false}));
 // setList([...list, text.current.value]);
 }
 

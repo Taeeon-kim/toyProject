@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 const Progress = (props) => {
-    const bucket_list = useSelector((state) => (state.bucket.list));
+    const bucket_list = useSelector((state) => (state.bucket.list)); 
     console.log(bucket_list)
 
     let count = 0;
