@@ -5,9 +5,10 @@ import BucketList from "./BucketList";
 import styled from "styled-components";
 import { Route} from "react-router";
 import Detail from "./Detail";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadBucketFB, addBucketFB} from "./redux/modules/bucket";
 import Progress from "./Progress";
+import Spinner from "./spinner";
 
 
 
@@ -17,6 +18,7 @@ function App() {
 const [list, setList] = React.useState(["영화관 가기", "매일 책읽기", "수영 배우기"]);
 const text = React.useRef(null);
 const dispatch = useDispatch();
+const is_loaded = useSelector(state => state.bucket.is_loaded)
 
 React.useEffect(async()=> {
     dispatch(loadBucketFB());
@@ -52,10 +54,11 @@ return (
 <input type="text" ref={text} />
 <button onClick={addBucketList}>추가하기</button>
 </Input>
-<button onClick={()=>{
+{/* <button onClick={()=>{
     window.scrollTo({top: 0, left: 0, behavior: "smooth" })}  // 0,0은 좌표를 말한다.
 
-}>위로 가기</button>
+}>위로 가기</button> */}
+{!is_loaded&& <Spinner />}
 </div>
 );
 }

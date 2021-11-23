@@ -9,6 +9,7 @@ const UPDATE = 'bucket/UPDATE';   // 우리에게 없는 기능
 const DELETE = 'bucket/DELETE';   // 우리에게 없는 기능
 
 const initialState = { 
+    is_loaded: false ,
     list : [ 
         // { text :"영화관 가기", completed : false},
         // { text :"매일 책읽기", completed : false},
@@ -111,14 +112,14 @@ export const addBucketFB = (bucket) =>{
 export default function reducer(state = initialState, action = {}) {    // 만약 초기값이 없으면 {} 으로 만들어놓고 빈 딕셔너리라 라고 알려준다 왜나하면 보통 안들어있으면 default로 정의되는데 그 블록안에 실행이 연산을 통한것이라면 에러가 나니 미리 빈공간이라고 선언
 switch (action.type) {
     case "bucket/LOAD" :{
-        return {list: action.bucket_list}
+        return {list: action.bucket_list, is_loaded: true}
     }
 
     case "bucket/CREATE" : {
         console.log(state)
         const new_bucket_list =[...state.list, action.bucket]; //기존 state에 있는 list 를 설정해주고, 새로만들 bucket 을 action 과 쓴다
         console.log(new_bucket_list)
-        return {list : new_bucket_list}; // 새로운게 추가된게 들어갈 배열을 만듬, 새로운 상태값 리턴
+        return {...state, list : new_bucket_list}; // 새로운게 추가된게 들어갈 배열을 만듬, 새로운 상태값 리턴
     }
 
     case "bucket/UPDATE" :{
@@ -142,7 +143,7 @@ switch (action.type) {
     });
  console.log(new_bucket_list)
 
-        return {list : new_bucket_list}; // 새로운게 추가된게 들어갈 배열을 만듬, 새로운 상태값 리턴
+        return {...state, list : new_bucket_list}; // 새로운게 추가된게 들어갈 배열을 만듬, 새로운 상태값 리턴
     }
     
     
