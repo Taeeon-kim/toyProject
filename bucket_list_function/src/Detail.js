@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 
 const Detail = (props) => {
     const dispatch =useDispatch();
-    const params = useParams();
+    const params = useParams();  //App.js에 path 부분보면 :index 라고있음 뒤에 붙는걸 params로 쓴다는것
     const bucket_index = params.index;
     const bucket_list = useSelector((state) => state.bucket.list)
     console.log(bucket_index)
@@ -22,7 +22,7 @@ const Detail = (props) => {
     //     }
     // 아래 삼항연산자를 쓴이유는 dispatch를 그아래 넣어줬는데 데이터를 가져오는데 시간이 걸리지만 <h1> 부분의 bucket_list는 바로 화면에 뿌려줄려고한다 따라서 undefined 에러가 뜨므로 있으면 출력 없으면 "" 빈공간출력해주게 해준다. 
     return (<div><h1> {bucket_list[bucket_index]? bucket_list[bucket_index].text : ""}</h1>  
-    <Button variant="outlined" color="primary" onClick={()=>{
+    <Button variant="outlined" color="primary " onClick={()=>{
         // dispatch(updateBucket(bucket_index)); 
         dispatch(updateBucketFB(bucket_list[bucket_index].id))
 
