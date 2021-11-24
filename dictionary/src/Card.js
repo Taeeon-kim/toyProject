@@ -13,13 +13,13 @@ const Card = (props) => {
     return (
         <BookStyle>
             {memo_list.map((memo,index) => {
-                return (<MemoContrainer>
+                return (<MemoContrainer key={index}> {/*여기에 key값을 안주면 에러는 아니고 warning 이 계속뜬다*/}
                     <Word>단어</Word>
-                    {memo}
+                    {memo.name}
                     <Word>설명</Word>
-                    {memo}
+                    {memo.desc}
                     <Word>예시</Word>
-                    {memo}
+                    {memo.ex}
                     </MemoContrainer>
                     )
             })}
@@ -57,7 +57,7 @@ const Word = styled.p`
     display: block;
     color: blue;
     /* border: 1px solid #fff; */
-    box-sizing: border-box
+    box-sizing: border-box;
 `;
 
 const AddButton = styled.a`
