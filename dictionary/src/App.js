@@ -15,7 +15,7 @@ const history = useHistory()
       <Title>MY DICTIONARY</Title>
       <Route path="/" exact>
       <Card />
-      <AddButton href="/page"> </AddButton>
+      <AddButton onClick={() =>{history.push("/page")} }> </AddButton>
       </Route>
       <Route path="/page">
       <AddPage />
@@ -31,7 +31,10 @@ const Container = styled.div`
 /* min-height: 60vh; */
 background-color: #e2fef8;
 padding: 16px;
-/* margin: auto; */
+
+min-width: 380px;
+margin: 30px;
+height: 100%;
 border-radius: 5px;
 border: 1px solid #ddd;
 

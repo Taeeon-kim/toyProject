@@ -2,6 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux'
+import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
+import Box from '@mui/material/Box';
+import { green } from '@mui/material/colors';
+import Icon from '@mui/material/Icon';
+
 
 const Card = (props) => {
     
@@ -19,7 +24,8 @@ const Card = (props) => {
                     <Word>설명</Word>
                     {memo.desc}
                     <Word>예시</Word>
-                    {memo.ex}
+                    <span style={{color : "#78b6ff"}}>{memo.ex}</span>
+                    
                     </MemoContrainer>
                     )
             })}
@@ -40,6 +46,7 @@ width: 100%;
     gap: 20px; // 각각의 메모사이에 갭을 준다.
     /* flex-direction: column; */
    /* padding: 0p; */
+   
  
 `;
 
@@ -47,7 +54,8 @@ const MemoContrainer = styled.div`
     /* position: relative; */
     min-width: 250px;
     width: 30%;
-    border: 1px solid rgb(255,255,255);
+    border: 1px solid rgb(19,106,1);
+    border-radius: 10px;
     background: rgb(255,255,255);
     
    
@@ -55,9 +63,12 @@ const MemoContrainer = styled.div`
 
 const Word = styled.p`
     display: block;
-    color: blue;
+    font-weight: bold;
+    font-size: 25px;
+    color: red;
     /* border: 1px solid #fff; */
-    box-sizing: border-box;
+    box-sizing: border-box; 
+    margin: 5px;
 `;
 
 const AddButton = styled.a`

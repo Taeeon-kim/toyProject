@@ -17,7 +17,10 @@ const AddPage = (props) => {
         // 스프레드 문법! 기억하고 계신가요? :) 
         // 원본 배열 list에 새로운 요소를 추가해주었습니다.
         // dispatch(addBucketFB({text: text.current.value, completed :false}));
-        dispatch(createBucket({name: text1.current.value, desc :text2.current.value, ex : text3.current.value}));
+        dispatch(createBucket(
+            {   name: text1.current.value, 
+                desc :text2.current.value, 
+                ex : text3.current.value}));
        
         // console.log(dispatch(createBucket(text1.current.value)))
         // setList([...list, text.current.value]);
@@ -36,7 +39,8 @@ const AddPage = (props) => {
          <NameTag for="example">예시</NameTag>
          <Input type="text" id="example" ref={text3}/>
          </Seperation>
-         <button onClick={() =>{addBucketList(); history.push("/") } } >추가하기</button>
+         <button onClick={() =>{addBucketList(); alert("등록되었습니다.") } } >추가하기</button>
+         <button onClick={() =>{history.push("/")} } >뒤로가기</button>
     </Adding>
     
     );
