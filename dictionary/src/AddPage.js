@@ -21,8 +21,7 @@ const AddPage = (props) => {
     // },[]);
     
     const addBucketList = () => {
-        // 스프레드 문법! 기억하고 계신가요? :) 
-        // 원본 배열 list에 새로운 요소를 추가해주었습니다.
+      
         // dispatch(addBucketFB({text: text.current.value, completed :false}));
         // dispatch(createBucket(
         //     {   name: text1.current.value, 

@@ -27,7 +27,7 @@ React.useEffect(async()=>{
       <Route path="/" exact>
       <Title>MY DICTIONARY</Title>
       <Card />
-      <AddButton onClick={() =>{history.push("/page")} }> </AddButton>
+      <AddButton onClick={() =>{history.push("/page")} }>추가</AddButton>
       </Route>
       <Route path="/page">
       <Title>단어 추가하기</Title>
@@ -44,31 +44,36 @@ const Container = styled.div`
 /* min-height: 60vh; */
 background-color: #e2fef8;
 padding: 16px;
-width: 90%;
+width: 100vw;
 /* min-width: 380px; */
-margin: 30px;
+/* margin: 0px 20px; */
 height: 100%;
 border-radius: 5px;
 border: 1px solid #ddd;
 
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
 color: slateblue;
-text-align: left;
+text-align: center;
 `;
 
 const AddButton = styled.a`
+display :flex;
  border : 1px solid red;
  width: 50px;
  height: 50px;
  background: red;
  border-radius: 50%;
- 
+ color: white;
+ font-weight: bold;
+ align-items: center;
+ justify-content: center;
   position: fixed;
   bottom: 10px;
   right: 10px;
-  
+  cursor: pointer;
+  &:hover { background: #ff5454; border: #ff5454}
 `;
 
 const CrossButton = styled
