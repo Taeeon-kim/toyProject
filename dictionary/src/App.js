@@ -4,10 +4,22 @@ import styled from 'styled-components'
 import {Route,useHistory} from 'react-router-dom'
 import Card from './Card';
 import AddPage from './AddPage';
-
+import {db} from './firebase'
+import {collection, getDoc, getDocs, addDoc, updateDoc, doc, deleteDoc} from 'firebase/firestore'  
+import { Delete } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import {loadBucketFB } from './redux/module/bucket'
 
 function App() {
 const history = useHistory()
+const dispatch = useDispatch()
+React.useEffect(async()=>{
+  console.log(db)
+  dispatch(loadBucketFB());
+  
+
+},[]);
+
 
   return (
     <div className="App">

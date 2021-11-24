@@ -1,11 +1,11 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux'
-import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
-import Box from '@mui/material/Box';
-import { green } from '@mui/material/colors';
-import Icon from '@mui/material/Icon';
+// import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
+// import Box from '@mui/material/Box';
+// import { green } from '@mui/material/colors';
+// import Icon from '@mui/material/Icon';
 
 
 const Card = (props) => {
@@ -65,7 +65,7 @@ const Word = styled.p`
     display: block;
     font-weight: bold;
     font-size: 25px;
-    color: red;
+    color: #f58484;
     /* border: 1px solid #fff; */
     box-sizing: border-box; 
     margin: 5px;

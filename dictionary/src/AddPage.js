@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { createBucket } from './redux/module/bucket';
 import {useHistory} from 'react-router-dom'
-
+import { loadBucketFB } from './redux/module/bucket';
 
 const AddPage = (props) => {
     const history = useHistory();
@@ -11,7 +11,13 @@ const AddPage = (props) => {
     const text1 = React.useRef(null);
     const text2 = React.useRef(null);
     const text3 = React.useRef(null);
-
+    
+    // React.useEffect(()=>{
+    //   // console.log(db)
+    //   dispatch(loadBucketFB());
+      
+    
+    // },[]);
     
     const addBucketList = () => {
         // 스프레드 문법! 기억하고 계신가요? :) 
@@ -25,21 +31,26 @@ const AddPage = (props) => {
         // console.log(dispatch(createBucket(text1.current.value)))
         // setList([...list, text.current.value]);
         }
+    const Clean = () => {
+        text1.current.value = "";
+        text2.current.value = "";
+        text3.current.value = "";
+    }
 
     return (<Adding>
         <Seperation>
-         <NameTag for="word">단어</NameTag>
+         <NameTag >단어</NameTag>
         <Input type="text" id="word" ref={text1} />
         </Seperation>
         <Seperation>
-        <NameTag for="description">설명</NameTag>
+        <NameTag >설명</NameTag>
          <Input type="text" id="description" ref={text2}/>
          </Seperation>
          <Seperation>
-         <NameTag for="example">예시</NameTag>
+         <NameTag >예시</NameTag>
          <Input type="text" id="example" ref={text3}/>
          </Seperation>
-         <button onClick={() =>{addBucketList(); alert("등록되었습니다.") } } >추가하기</button>
+         <button onClick={() =>{addBucketList(); alert("등록되었습니다."); Clean()} } >추가하기</button>
          <button onClick={() =>{history.push("/")} } >뒤로가기</button>
     </Adding>
     
