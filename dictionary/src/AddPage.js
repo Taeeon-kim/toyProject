@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { createBucket } from './redux/module/bucket';
 import {useHistory} from 'react-router-dom'
-import { loadBucketFB } from './redux/module/bucket';
+import { loadBucketFB,addBucketFB } from './redux/module/bucket';
+
 
 const AddPage = (props) => {
     const history = useHistory();
@@ -23,10 +24,14 @@ const AddPage = (props) => {
         // 스프레드 문법! 기억하고 계신가요? :) 
         // 원본 배열 list에 새로운 요소를 추가해주었습니다.
         // dispatch(addBucketFB({text: text.current.value, completed :false}));
-        dispatch(createBucket(
-            {   name: text1.current.value, 
-                desc :text2.current.value, 
-                ex : text3.current.value}));
+        // dispatch(createBucket(
+        //     {   name: text1.current.value, 
+        //         desc :text2.current.value, 
+        //         ex : text3.current.value}));
+        dispatch(addBucketFB({ 
+            name: text1.current.value, 
+            desc :text2.current.value, 
+            ex : text3.current.value}))
        
         // console.log(dispatch(createBucket(text1.current.value)))
         // setList([...list, text.current.value]);
@@ -39,15 +44,15 @@ const AddPage = (props) => {
 
     return (<Adding>
         <Seperation>
-         <NameTag >단어</NameTag>
+         <NameTag htmlFor="word">단어</NameTag>
         <Input type="text" id="word" ref={text1} />
         </Seperation>
         <Seperation>
-        <NameTag >설명</NameTag>
+        <NameTag htmlFor="description">설명</NameTag>
          <Input type="text" id="description" ref={text2}/>
          </Seperation>
          <Seperation>
-         <NameTag >예시</NameTag>
+         <NameTag htmlFor="example">예시</NameTag>
          <Input type="text" id="example" ref={text3}/>
          </Seperation>
          <button onClick={() =>{addBucketList(); alert("등록되었습니다."); Clean()} } >추가하기</button>
@@ -87,7 +92,7 @@ const Input = styled.input`
 const NameTag = styled.label`
 /* margin-bottom: 5px; */
 position: absolute;
-left : 20px;
+left : 50px;
 `;
 
 export default AddPage;

@@ -24,12 +24,13 @@ React.useEffect(async()=>{
   return (
     <div className="App">
       <Container>
-      <Title>MY DICTIONARY</Title>
       <Route path="/" exact>
+      <Title>MY DICTIONARY</Title>
       <Card />
       <AddButton onClick={() =>{history.push("/page")} }> </AddButton>
       </Route>
       <Route path="/page">
+      <Title>단어 추가하기</Title>
       <AddPage />
       </Route>     
         </Container>
@@ -43,8 +44,8 @@ const Container = styled.div`
 /* min-height: 60vh; */
 background-color: #e2fef8;
 padding: 16px;
-
-min-width: 380px;
+width: 90%;
+/* min-width: 380px; */
 margin: 30px;
 height: 100%;
 border-radius: 5px;

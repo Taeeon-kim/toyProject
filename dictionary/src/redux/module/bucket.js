@@ -37,13 +37,21 @@ export const loadBucketFB=()=>{
         let bucket_list =[];
         bucket_data.forEach((doc) => {
             //  console.log(doc.data())
-            bucket_list.push({...doc.data()})
+            bucket_list.push({id : doc.id, ...doc.data()})
         });
 
         console.log(bucket_list)
         dispatch(loadBucket(bucket_list));
 
 
+    }
+}
+
+export const addBucketFB= (bucket) =>{
+    return function(dispatch) {
+        const docRef = addDoc(collection(db, "dictionary"), bucket);
+        const bucket_data = {id: docRef.id, ...bucket}
+        dispatch(createBucket(bucket_data));
     }
 }
 
