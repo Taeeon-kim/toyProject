@@ -67,11 +67,11 @@ const Adding = styled.div`
   margin:auto;
   padding: auto;
   max-width: 400px;
-  width:50%;
-  gap: 20px;
+  width:100%;
+  gap: 10px;
 `;
 const Seperation = styled.div`
-
+    
     display: flex;
     flex-direction: column;
      background: white;

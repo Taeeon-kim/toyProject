@@ -7,7 +7,7 @@ import AddPage from './AddPage';
 import {db} from './firebase'
 import {collection, getDoc, getDocs, addDoc, updateDoc, doc, deleteDoc} from 'firebase/firestore'  
 import { Delete } from '@mui/icons-material';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector} from 'react-redux';
 import {loadBucketFB } from './redux/module/bucket'
 import UpdatePage from './UpdatePage';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -16,7 +16,8 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 function App() {
 const history = useHistory()
 const dispatch = useDispatch()
-
+const memo_list = useSelector((state) => state.bucket.list); 
+console.log(memo_list)
 React.useEffect(async()=>{
   console.log(db)
   dispatch(loadBucketFB());
@@ -38,9 +39,9 @@ React.useEffect(async()=>{
       <Title>단어 추가하기</Title>
       <AddPage />
       </Route>
-      <Route path = "/update/:index">
+      <Route path = "/update/:index" >
       <Title>수정하기</Title>
-      <UpdatePage />
+      <UpdatePage memo_list={memo_list}/>
       </Route>     
         </Container>
        

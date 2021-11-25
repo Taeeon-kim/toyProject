@@ -1,44 +1,53 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { createBucket, updateBucket } from './redux/module/bucket';
+import { createBucket, updateBucket, updateBucketFB} from './redux/module/bucket';
 import {useHistory, useParams} from 'react-router-dom'
 import { loadBucketFB,addBucketFB } from './redux/module/bucket';
-
+import { ContentPasteSearchOutlined, Memory } from '@mui/icons-material';
+import {doc, getDoc, collection} from 'firebase/firestore'  
+import { db } from './firebase';
 
 const UpdatePage = (props) => {
 
     const params = useParams();
     const bucket_index = params.index;
     const bucket_list = useSelector((state)=> state.bucket.list)
-
-    console.log(params)
-    console.log(bucket_index)
-    console.log(bucket_list)
+    console.log(bucket_list[bucket_index].name)
+    // const docRef = getDoc(collection(db, "dictionary"))
+    // console.log(docRef)∂
+    // console.log(params)
+    // console.log(bucket_id)
+    // console.log(bucket_list)
     const history = useHistory();
     const dispatch = useDispatch();
     const text1 = React.useRef(null);
     const text2 = React.useRef(null);
     const text3 = React.useRef(null);
     
+
+    console.log(props.memo_list)
     // React.useEffect(()=>{
     //   // console.log(db)
-    //   dispatch(loadBucketFB());
-      
+    // //   dispatch(loadBucketFB());
+    // const docRef = doc(db, "dictionary", bucket_id)
+    // // console.log({...docRef.})
     
     // },[]);
     
-    const addBucketList = () => {
+    const updateBucket = (props) => {
       
         // dispatch(addBucketFB({text: text.current.value, completed :false}));
         // dispatch(createBucket(
         //     {   name: text1.current.value, 
         //         desc :text2.current.value, 
         //         ex : text3.current.value}));
-        dispatch(addBucketFB({ 
+        dispatch(updateBucketFB({ 
             name: text1.current.value, 
             desc :text2.current.value, 
-            ex : text3.current.value}))
+            ex : text3.current.value,
+            id : bucket_list[bucket_index].id,
+            index : bucket_index}))
        
         // console.log(dispatch(createBucket(text1.current.value)))
         // setList([...list, text.current.value]);
@@ -52,20 +61,20 @@ const UpdatePage = (props) => {
     return (<Adding>
         <Seperation>
          <NameTag htmlFor="word">단어</NameTag>
-        <Input placeholder="원하는 단어를 입력해주세요." type="text" id="word" ref={text1} />
+        <Input placeholder="원하는 단어를 입력해주세요." type="text"  ref={text1} defaultValue={bucket_list[bucket_index].name} />
         </Seperation>
         <Seperation>
         <NameTag htmlFor="description">설명</NameTag>
-         <Input placeholder="단어가 무슨 뜻인지 설명해주세요" type="text" id="description" ref={text2}/>
+         <Input placeholder="단어가 무슨 뜻인지 설명해주세요" type="text"  ref={text2}  defaultValue={bucket_list[bucket_index].desc} />
          </Seperation>
          <Seperation>
          <NameTag htmlFor="example">예시</NameTag>
-         <Input placeholder="무슨 예문이 있을까요?" type="text" id="example" ref={text3}/>
+         <Input placeholder="무슨 예문이 있을까요?" type="text"  ref={text3} defaultValue={bucket_list[bucket_index].ex} />
          </Seperation>
          {/* <ButtonStyle onClick={() =>{addBucketList(); alert("등록되었습니다."); Clean()} } >추가하기</ButtonStyle> */}
-         {/* <ButtonStyle onClick={() =>{ 
-             dispatch(updateBucketFB(bucket_list))
-             history.push("/")} } >수정하기</ButtonStyle> */}
+         <ButtonStyle onClick={() =>{ 
+             updateBucket()
+            history.push("/") } } >수정하기</ButtonStyle>
     </Adding>
     
     );

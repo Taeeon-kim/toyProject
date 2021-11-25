@@ -142,7 +142,7 @@ switch (action.type) {
     case "bucket/DELETE" : {
         console.log(state, action)
         const new_bucket_list = state.list.filter((l,idx)=> 
-    {   console.log(parseInt(action.bucket_index)!==idx,parseInt(action.bucket_index), idx);
+    {   
         return parseInt(action.bucket_index) !== idx;
     });
  console.log(new_bucket_list)

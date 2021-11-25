@@ -5,7 +5,7 @@ import { async } from "@firebase/util";
 
 const LOAD = 'bucket/LOAD'; // 서버에서 가져오거나 할때 쓴다  
 const CREATE = 'bucket/CREATE';  // 생성,추가 기능이므로 킵해놓는다.
-
+const UPDATE = 'bucket/UPDATE';
 
 const initialState = {    //초기 state 객체 만들어줌.
     list : [//{ name : "영화관 가기", desc : "이렇게", ex : "aaa" }, 
@@ -29,7 +29,7 @@ const initialState = {    //초기 state 객체 만들어줌.
  }
 
  export function updateBucket(bucket){
-
+    return {type: UPDATE, bucket } 
  }
 
  
@@ -51,22 +51,25 @@ export const loadBucketFB=()=>{
     }
 }
 
+
 export const addBucketFB= (bucket) =>{
     return async function(dispatch) {
         const docRef =await addDoc(collection(db, "dictionary"), bucket);
         // const _bucket = await getDoc(docRef)
         const bucket_data = {id: docRef.id, ...bucket};
-
         console.log(bucket_data)
         dispatch(createBucket(bucket_data));
     }
 }
 
-export const updateBucketFB = (bucket_id) => {
-    // return fucntion (dispatch) {
+export const updateBucketFB = (bucket) => {
+    return async function (dispatch){
+        const docRef =  doc(db,"dictionary", bucket.id)
+        await updateDoc(docRef, bucket)
+        dispatch(updateBucket(bucket))
+        // console.log(bucket);
 
-
-    // }
+    }
 
 }
 
@@ -84,6 +87,16 @@ export const updateBucketFB = (bucket_id) => {
         
         case 'bucket/LOAD' : {
             return {list: action.bucket_list}
+        }
+
+        case 'bucket/UPDATE' : {
+            const new_bucket_list = state.list.map((l,idx)=> {
+                console.log(l);
+                if(parseInt(action.bucket.index)===idx){
+                    return  action.bucket
+                } else {return l}
+            })
+            return {list : new_bucket_list }
         }
 
         default: return state;
