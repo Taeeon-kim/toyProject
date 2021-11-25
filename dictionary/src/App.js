@@ -10,6 +10,7 @@ import { Delete } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import {loadBucketFB } from './redux/module/bucket'
 
+
 function App() {
 const history = useHistory()
 const dispatch = useDispatch()
@@ -50,7 +51,6 @@ width: 100vw;
 height: 100%;
 border-radius: 5px;
 border: 1px solid #ddd;
-
 
 `;
 

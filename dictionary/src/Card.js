@@ -15,10 +15,11 @@ const Card = (props) => {
     console.log(memo_list)
     
     
+    
     return (
         <BookStyle>
             {memo_list.map((memo,index) => {
-                return (<MemoContainer key={index}> {/*여기에 key값을 안주면 에러는 아니고 warning 이 계속뜬다*/}
+                return (<MemoContainer key={index}>       {/*여기에 key값을 안주면 에러는 아니고 warning 이 계속뜬다*/}
                     <Word>단어</Word>
                     {memo.name}
                     <Word>설명</Word>
@@ -69,6 +70,7 @@ const Word = styled.p`
     /* border: 1px solid #fff; */
     box-sizing: border-box; 
     margin: 5px;
+    text-decoration: underline;
 `;
 
 

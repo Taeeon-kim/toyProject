@@ -48,8 +48,8 @@ export const loadBucketFB=()=>{
 }
 
 export const addBucketFB= (bucket) =>{
-    return function(dispatch) {
-        const docRef = addDoc(collection(db, "dictionary"), bucket);
+    return async function(dispatch) {
+        const docRef =await addDoc(collection(db, "dictionary"), bucket);
         const bucket_data = {id: docRef.id, ...bucket}
         dispatch(createBucket(bucket_data));
     }

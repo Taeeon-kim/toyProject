@@ -44,18 +44,18 @@ const AddPage = (props) => {
     return (<Adding>
         <Seperation>
          <NameTag htmlFor="word">단어</NameTag>
-        <Input type="text" id="word" ref={text1} />
+        <Input placeholder="원하는 단어를 입력해주세요." type="text" id="word" ref={text1} />
         </Seperation>
         <Seperation>
         <NameTag htmlFor="description">설명</NameTag>
-         <Input type="text" id="description" ref={text2}/>
+         <Input placeholder="단어가 무슨 뜻인지 설명해주세요" type="text" id="description" ref={text2}/>
          </Seperation>
          <Seperation>
          <NameTag htmlFor="example">예시</NameTag>
-         <Input type="text" id="example" ref={text3}/>
+         <Input placeholder="무슨 예문이 있을까요?" type="text" id="example" ref={text3}/>
          </Seperation>
-         <button onClick={() =>{addBucketList(); alert("등록되었습니다."); Clean()} } >추가하기</button>
-         <button onClick={() =>{history.push("/")} } >뒤로가기</button>
+         <ButtonStyle onClick={() =>{addBucketList(); alert("등록되었습니다."); Clean()} } >추가하기</ButtonStyle>
+         <ButtonStyle onClick={() =>{history.push("/")} } >뒤로가기</ButtonStyle>
     </Adding>
     
     );
@@ -65,6 +65,7 @@ const Adding = styled.div`
   display: flex;
   flex-direction: column;
   margin:auto;
+  padding: auto;
   max-width: 400px;
   width:50%;
   gap: 20px;
@@ -77,16 +78,20 @@ const Seperation = styled.div`
      /* width: 100%; */
     align-items: center;
      max-width: 350px;
-
+     padding: 10px;
+     background:#e2fef8;
 `;
 
 const Input = styled.input`
     margin-top: 30px;
     margin:auto;
+    position: relative;
+    left:5px;
      background: white;
      width: 100%;
      height: 40px;
      max-width: 300px;
+     border-radius: 5px;
      
 `;
 
@@ -95,6 +100,20 @@ const NameTag = styled.label`
 /* position: absolute; */
 margin:auto;
 left : 50px;
+font-weight: bold;
+color: purple;
+`;
+
+const ButtonStyle = styled.button`
+    background: purple;
+    color: white;
+    font-weight: bold;
+    border:purple;
+    height: 30px;
+    width: 200px;
+    margin:auto;
+    border-radius: 5px;
+    &:hover{box-shadow: 5px 5px 5px #742b2b }
 `;
 
 export default AddPage;
