@@ -18,7 +18,7 @@ const Card = (props) => {
     return (
         <BookStyle>
             {memo_list.map((memo,index) => {
-                return (<MemoContrainer key={index}> {/*여기에 key값을 안주면 에러는 아니고 warning 이 계속뜬다*/}
+                return (<MemoContainer key={index}> {/*여기에 key값을 안주면 에러는 아니고 warning 이 계속뜬다*/}
                     <Word>단어</Word>
                     {memo.name}
                     <Word>설명</Word>
@@ -26,7 +26,7 @@ const Card = (props) => {
                     <Word>예시</Word>
                     <span style={{color : "#78b6ff"}}>{memo.ex}</span>
                     
-                    </MemoContrainer>
+                    </MemoContainer>
                     )
             })}
         {/* <Memo>테스트용 박스 체크하기위해 각 하나 메모장을 넣어줄것이다.</Memo>
@@ -50,14 +50,14 @@ width: 100%;
  
 `;
 
-const MemoContrainer = styled.div`
+const MemoContainer = styled.div`
     /* position: relative; */
     min-width: 250px;
     width: 30%;
     border: 1px solid rgb(19,106,1);
     border-radius: 10px;
     background: rgb(255,255,255);
-    
+    &:hover { box-shadow: 10px 10px 10px #ddd}
    
 `;
 
@@ -71,11 +71,5 @@ const Word = styled.p`
     margin: 5px;
 `;
 
-const AddButton = styled.a`
- border : 1px solid red;
- width: 50px;
- height: 50px;
- background: red;
- border-radius: 50%;`;
 
 export default Card;

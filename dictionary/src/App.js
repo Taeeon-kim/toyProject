@@ -51,6 +51,7 @@ height: 100%;
 border-radius: 5px;
 border: 1px solid #ddd;
 
+
 `;
 
 const Title = styled.h1`
@@ -73,9 +74,8 @@ display :flex;
   bottom: 10px;
   right: 10px;
   cursor: pointer;
-  &:hover { background: #ff5454; border: #ff5454}
+  &:hover { background: #ff5454; border: #ff5454; box-shadow: 5px 5px 10px #742b2b}
 `;
 
-const CrossButton = styled
 
 export default App;

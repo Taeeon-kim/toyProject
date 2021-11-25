@@ -64,6 +64,7 @@ const AddPage = (props) => {
 const Adding = styled.div`
   display: flex;
   flex-direction: column;
+  margin:auto;
   max-width: 400px;
   width:50%;
   gap: 20px;
@@ -81,6 +82,7 @@ const Seperation = styled.div`
 
 const Input = styled.input`
     margin-top: 30px;
+    margin:auto;
      background: white;
      width: 100%;
      height: 40px;
@@ -90,7 +92,8 @@ const Input = styled.input`
 
 const NameTag = styled.label`
 /* margin-bottom: 5px; */
-position: absolute;
+/* position: absolute; */
+margin:auto;
 left : 50px;
 `;
 
