@@ -9,11 +9,14 @@ import {collection, getDoc, getDocs, addDoc, updateDoc, doc, deleteDoc} from 'fi
 import { Delete } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import {loadBucketFB } from './redux/module/bucket'
+import UpdatePage from './UpdatePage';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
 function App() {
 const history = useHistory()
 const dispatch = useDispatch()
+
 React.useEffect(async()=>{
   console.log(db)
   dispatch(loadBucketFB());
@@ -28,11 +31,16 @@ React.useEffect(async()=>{
       <Route path="/" exact>
       <Title>MY DICTIONARY</Title>
       <Card />
-      <AddButton onClick={() =>{history.push("/page")} }>추가</AddButton>
+      {/* <AddButton onClick={() =>{history.push("/add")} }>추가</AddButton> */}
+      <Icon style={{fontSize: "60px" }} onClick={() =>{history.push("/add")} }/>
       </Route>
-      <Route path="/page">
+      <Route path="/add">
       <Title>단어 추가하기</Title>
       <AddPage />
+      </Route>
+      <Route path = "/update/:index">
+      <Title>수정하기</Title>
+      <UpdatePage />
       </Route>     
         </Container>
        
@@ -75,6 +83,18 @@ display :flex;
   right: 10px;
   cursor: pointer;
   &:hover { background: #ff5454; border: #ff5454; box-shadow: 5px 5px 10px #742b2b}
+`;
+
+const Icon = styled(AddCircleIcon)`
+/* margin: 10px; */
+padding: 0%;
+color:green;
+ border-radius: 30px;
+position: fixed;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  &:hover { box-shadow: 5px 5px 10px #742b2b;  }
 `;
 
 

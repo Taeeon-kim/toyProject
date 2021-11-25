@@ -28,6 +28,10 @@ const initialState = {    //초기 state 객체 만들어줌.
      return {type: CREATE, bucket } 
  }
 
+ export function updateBucket(bucket){
+
+ }
+
  
 //middlewares 미들함수
 export const loadBucketFB=()=>{
@@ -50,9 +54,20 @@ export const loadBucketFB=()=>{
 export const addBucketFB= (bucket) =>{
     return async function(dispatch) {
         const docRef =await addDoc(collection(db, "dictionary"), bucket);
-        const bucket_data = {id: docRef.id, ...bucket}
+        // const _bucket = await getDoc(docRef)
+        const bucket_data = {id: docRef.id, ...bucket};
+
+        console.log(bucket_data)
         dispatch(createBucket(bucket_data));
     }
+}
+
+export const updateBucketFB = (bucket_id) => {
+    // return fucntion (dispatch) {
+
+
+    // }
+
 }
 
 

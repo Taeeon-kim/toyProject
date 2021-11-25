@@ -2,6 +2,15 @@ import React from 'react';
 // import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import {useSelector} from 'react-redux'
+import Icon from '@mui/material/Icon';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {useHistory} from 'react-router-dom'
+//오픈메뉴 import 3개
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
 // import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
 // import Box from '@mui/material/Box';
 // import { green } from '@mui/material/colors';
@@ -10,37 +19,52 @@ import {useSelector} from 'react-redux'
 
 const Card = (props) => {
     
+     const history = useHistory(); 
     const memo_list = useSelector((state) => state.bucket.list); //리덕스 스토어에서 list 값 가져옴
 
     console.log(memo_list)
     
-    
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {   //팝업창이 켜질때
+    setAnchorEl(event.currentTarget);
+    console.log("이부분1")
+  };
+
+  const handleClose = () => {    //팝업창을 끌때 생성
+    setAnchorEl(null);
+    console.log("꺼질때?")
+  };
     
     return (
+        
         <BookStyle>
+       
             {memo_list.map((memo,index) => {
-                return (<MemoContainer key={index}>       {/*여기에 key값을 안주면 에러는 아니고 warning 이 계속뜬다*/}
+                return (<MemoContainer key={memo.id}>       {/*여기에 key값을 안주면 에러는 아니고 warning 이 계속뜬다*/}
+                   <button onClick={() =>{history.push("/update/"+memo.id)}}style={{position: "relative", left: "100px" }}>수정하기</button>
+                   <MenuDot aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
+       
                     <Word>단어</Word>
                     {memo.name}
                     <Word>설명</Word>
                     {memo.desc}
                     <Word>예시</Word>
                     <span style={{color : "#78b6ff"}}>{memo.ex}</span>
-                    
                     </MemoContainer>
                     )
             })}
         {/* <Memo>테스트용 박스 체크하기위해 각 하나 메모장을 넣어줄것이다.</Memo>
         <Memo>테스트용 박스 체크하기위해 각 하나 메모장을 넣어줄것이다.</Memo>
         <Memo>테스트용 박스 체크하기위해 각 하나 메모장을 넣어줄것이다.</Memo> */}
-        
+             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
         </BookStyle>
         
     );
 }
 
 const BookStyle = styled.div`
-width: 100%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;  //이게 있으면 화면 사이즈에 맞게 플렉스하게 줄바꿈해주고 그다음 내용물써줌
     /* flex-direction: column; */
@@ -54,6 +78,7 @@ width: 100%;
 const MemoContainer = styled.div`
     /* position: relative; */
     min-width: 250px;
+    padding: 10px;
     width: 30%;
     border: 1px solid rgb(19,106,1);
     border-radius: 10px;
@@ -73,5 +98,11 @@ const Word = styled.p`
     text-decoration: underline;
 `;
 
+const MenuDot = styled(MoreVertIcon)`
+border-radius: 10px;
+position: relative; //나중에 수정해야한다
+left: 150px;
+    &:hover{ background-color : #dddddd};
+`;
 
 export default Card;
