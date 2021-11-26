@@ -22,9 +22,9 @@ const Card = (props) => {
     return (
         <BookStyle>
             {memo_list.map((memo,index) => {
-                return (<MemoContainer key={memo.id}>       {/*여기에 key값을 안주면 에러는 아니고 warning 이 계속뜬다*/}
+                return (<MemoContainer key={memo.id} >       {/*여기에 key값을 안주면 에러는 아니고 warning 이 계속뜬다*/}
                    <EditIcon style={{position: "relative", left : "80px"}} onClick={() =>{history.push("/update/"+index)} }>수정하기</EditIcon>
-                   {/* <DeleteIcon  style={{position: "relative", left : "90px"}} onClick={() =>{ dispatch(deleteBucketFB(memo.id)) ;   }} ></DeleteIcon> */}
+                   <DeleteIcon  style={{position: "relative", left : "90px"}} onClick={() =>{ dispatch(deleteBucketFB(memo.id)) ;   }} ></DeleteIcon>
                         <Word>단어</Word>
                         {memo.name}
                         <Word>설명</Word>

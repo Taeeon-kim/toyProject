@@ -16,14 +16,15 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 function App() {
 const history = useHistory()
 const dispatch = useDispatch()
-const memo_list = useSelector((state) => state.bucket.list); 
-console.log(memo_list)
+const memo_list = useSelector((state) => state.bucket.list);
+
+
 React.useEffect(async()=>{
-  console.log(db)
+  // console.log("dfsdfdsf")
   dispatch(loadBucketFB());
   
 
-},[]);
+},[memo_list.length]);
 
 
   return (
