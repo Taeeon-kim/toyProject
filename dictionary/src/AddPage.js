@@ -30,7 +30,8 @@ const AddPage = (props) => {
         dispatch(addBucketFB({ 
             name: text1.current.value, 
             desc :text2.current.value, 
-            ex : text3.current.value}))
+            ex : text3.current.value,
+            }))
        
         // console.log(dispatch(createBucket(text1.current.value)))
         // setList([...list, text.current.value]);

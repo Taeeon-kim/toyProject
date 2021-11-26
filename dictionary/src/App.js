@@ -41,7 +41,7 @@ React.useEffect(async()=>{
       </Route>
       <Route path = "/update/:index" >
       <Title>수정하기</Title>
-      <UpdatePage memo_list={memo_list}/>
+      <UpdatePage />
       </Route>     
         </Container>
        

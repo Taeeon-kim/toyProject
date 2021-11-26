@@ -75,16 +75,17 @@ export const updateBucketFB = (bucket) => {
 
 
 
+
  export default function reducer(state = initialState, action = {}) {
     switch(action.type)
     {
         case 'bucket/CREATE' :{
             console.log(action.bucket)
-    const new_bucket_list =[...state.list, action.bucket];
-    console.log(new_bucket_list)
-    return {list : new_bucket_list}
+            const new_bucket_list =[...state.list, action.bucket];
+            // console.log(new_bucket_list)
+        return {list : new_bucket_list}
         }
-        
+
         case 'bucket/LOAD' : {
             return {list: action.bucket_list}
         }

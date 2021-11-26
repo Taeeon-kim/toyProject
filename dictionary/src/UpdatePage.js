@@ -1,24 +1,18 @@
-import React, { memo } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBucket, updateBucket, updateBucketFB} from './redux/module/bucket';
 import {useHistory, useParams} from 'react-router-dom'
-import { loadBucketFB,addBucketFB } from './redux/module/bucket';
-import { ContentPasteSearchOutlined, Memory } from '@mui/icons-material';
 import {doc, getDoc, collection} from 'firebase/firestore'  
-import { db } from './firebase';
+
 
 const UpdatePage = (props) => {
 
     const params = useParams();
     const bucket_index = params.index;
     const bucket_list = useSelector((state)=> state.bucket.list)
-    console.log(bucket_list[bucket_index].name)
+    // console.log(bucket_list[bucket_index].name)
     // const docRef = getDoc(collection(db, "dictionary"))
-    // console.log(docRef)∂
-    // console.log(params)
-    // console.log(bucket_id)
-    // console.log(bucket_list)
     const history = useHistory();
     const dispatch = useDispatch();
     const text1 = React.useRef(null);
@@ -26,7 +20,7 @@ const UpdatePage = (props) => {
     const text3 = React.useRef(null);
     
 
-    console.log(props.memo_list)
+    // console.log(props.memo_list)
     // React.useEffect(()=>{
     //   // console.log(db)
     // //   dispatch(loadBucketFB());

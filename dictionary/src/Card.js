@@ -1,44 +1,37 @@
 import React from 'react';
 // import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import {useSelector} from 'react-redux'
-import Icon from '@mui/material/Icon';
+import {useSelector, useDispatch} from 'react-redux'
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {useHistory} from 'react-router-dom'
+import {useHistory } from 'react-router-dom'
+import DeleteIcon from '@mui/icons-material/Delete';
+import { deleteBucketFB } from './redux/module/bucket';
 
-
-// import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
-// import Box from '@mui/material/Box';
-// import { green } from '@mui/material/colors';
-// import Icon from '@mui/material/Icon';
 
 
 const Card = (props) => {
     
      const history = useHistory(); 
     const memo_list = useSelector((state) => state.bucket.list); //리덕스 스토어에서 list 값 가져옴
+    const dispatch  = useDispatch();
 
-    console.log(memo_list)
-    console.log(props)
     
-    
+
+
     return (
-        
         <BookStyle>
-       
             {memo_list.map((memo,index) => {
                 return (<MemoContainer key={memo.id}>       {/*여기에 key값을 안주면 에러는 아니고 warning 이 계속뜬다*/}
-                   <EditIcon style={{position: "relative", left : "100px"}} onClick={() =>{history.push("/update/"+index)} }>수정하기</EditIcon>
-                   
-       
-                    <Word>단어</Word>
-                    {memo.name}
-                    <Word>설명</Word>
-                    {memo.desc}
-                    <Word>예시</Word>
-                    <span style={{color : "#78b6ff"}}>{memo.ex}</span>
-
+                   <EditIcon style={{position: "relative", left : "80px"}} onClick={() =>{history.push("/update/"+index)} }>수정하기</EditIcon>
+                   {/* <DeleteIcon  style={{position: "relative", left : "90px"}} onClick={() =>{ dispatch(deleteBucketFB(memo.id)) ;   }} ></DeleteIcon> */}
+                        <Word>단어</Word>
+                        {memo.name}
+                        <Word>설명</Word>
+                        {memo.desc}
+                        <Word>예시</Word>
+                        <span style={{color : "#78b6ff"}}>{memo.ex}</span>
+                    
                     </MemoContainer>
                     )
             })}
