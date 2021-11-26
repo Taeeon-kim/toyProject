@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { createBucket } from './redux/module/bucket';
+import { useDispatch , useSelector} from 'react-redux';
+
 import {useHistory} from 'react-router-dom'
-import { loadBucketFB,addBucketFB } from './redux/module/bucket';
+import { addBucketFB } from './redux/module/bucket';
 
 
 const AddPage = (props) => {
@@ -12,29 +12,20 @@ const AddPage = (props) => {
     const text1 = React.useRef(null);
     const text2 = React.useRef(null);
     const text3 = React.useRef(null);
+    const bucket_list = useSelector((state)=> state.bucket.list)
     
-    // React.useEffect(()=>{
-    //   // console.log(db)
-    //   dispatch(loadBucketFB());
-      
-    
-    // },[]);
     
     const addBucketList = () => {
       
-        // dispatch(addBucketFB({text: text.current.value, completed :false}));
-        // dispatch(createBucket(
-        //     {   name: text1.current.value, 
-        //         desc :text2.current.value, 
-        //         ex : text3.current.value}));
+      
         dispatch(addBucketFB({ 
             name: text1.current.value, 
             desc :text2.current.value, 
             ex : text3.current.value,
-            }))
+           date : Date.now()
+        }))
        
-        // console.log(dispatch(createBucket(text1.current.value)))
-        // setList([...list, text.current.value]);
+  
         }
     const Clean = () => {
         text1.current.value = "";

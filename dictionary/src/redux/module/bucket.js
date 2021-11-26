@@ -1,6 +1,6 @@
 import {db} from "../../firebase"; // ../../ 두번쓰는건 현재 위치가 moudule 폴더 안 그위가 redux 그위가 src 이기때문에 
-import {collection, getDoc, getDocs, addDoc, updateDoc, doc, deleteDoc} from 'firebase/firestore';
-import { async } from "@firebase/util";
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc} from 'firebase/firestore';
+
 
 
 const LOAD = 'bucket/LOAD'; // 서버에서 가져오거나 할때 쓴다  
@@ -41,17 +41,18 @@ const initialState = {    //초기 state 객체 만들어줌.
 export const loadBucketFB=()=>{
     return async function(dispatch){ //매개변수가 dispatch 인건 이해가안감 그리고 return에 바로 함수로 하는것도 
         const bucket_data =await getDocs(collection(db, "dictionary")); //파이어 문서를 다가져옴
+        
         // console.log(bucket_data)
         let bucket_list =[];
-        bucket_data.forEach((doc) => {
+        bucket_data.forEach((doc,index) => {
             //  console.log(doc.data())
             bucket_list.push({id : doc.id, ...doc.data()})
         });
-
-        // console.log(bucket_list)
+        bucket_list.sort(function (a,b){
+            return b.date - a.date
+        })
+        console.log(bucket_list)
         dispatch(loadBucket(bucket_list));
-
-
     }
 }
 
@@ -70,6 +71,10 @@ export const updateBucketFB = (bucket) => {
     return async function (dispatch){
         const docRef =  doc(db,"dictionary", bucket.id)
         await updateDoc(docRef, bucket)
+
+        // await updateDoc(docRef, {
+        //     bucket: serverTimestamp()
+        // })
         dispatch(updateBucket(bucket))
         // console.log(bucket);
 

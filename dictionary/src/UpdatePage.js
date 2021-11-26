@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { createBucket, updateBucket, updateBucketFB} from './redux/module/bucket';
+import {  updateBucketFB} from './redux/module/bucket';
 import {useHistory, useParams} from 'react-router-dom'
-import {doc, getDoc, collection} from 'firebase/firestore'  
+
 
 
 const UpdatePage = (props) => {
@@ -20,22 +20,11 @@ const UpdatePage = (props) => {
     const text3 = React.useRef(null);
     
 
-    // console.log(props.memo_list)
-    // React.useEffect(()=>{
-    //   // console.log(db)
-    // //   dispatch(loadBucketFB());
-    // const docRef = doc(db, "dictionary", bucket_id)
-    // // console.log({...docRef.})
-    
-    // },[]);
+   
     
     const updateBucket = (props) => {
       
-        // dispatch(addBucketFB({text: text.current.value, completed :false}));
-        // dispatch(createBucket(
-        //     {   name: text1.current.value, 
-        //         desc :text2.current.value, 
-        //         ex : text3.current.value}));
+     
         dispatch(updateBucketFB({ 
             name: text1.current.value, 
             desc :text2.current.value, 
@@ -43,8 +32,6 @@ const UpdatePage = (props) => {
             id : bucket_list[bucket_index].id,
             index : bucket_index}))
        
-        // console.log(dispatch(createBucket(text1.current.value)))
-        // setList([...list, text.current.value]);
         }
     const Clean = () => {
         text1.current.value = "";

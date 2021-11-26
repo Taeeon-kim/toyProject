@@ -9,15 +9,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { deleteBucketFB } from './redux/module/bucket';
 
 
-
 const Card = (props) => {
     
      const history = useHistory(); 
     const memo_list = useSelector((state) => state.bucket.list); //리덕스 스토어에서 list 값 가져옴
     const dispatch  = useDispatch();
-
-    
-
 
     return (
         <BookStyle>
@@ -35,9 +31,7 @@ const Card = (props) => {
                     </MemoContainer>
                     )
             })}
-        {/* <Memo>테스트용 박스 체크하기위해 각 하나 메모장을 넣어줄것이다.</Memo>
-        <Memo>테스트용 박스 체크하기위해 각 하나 메모장을 넣어줄것이다.</Memo>
-        <Memo>테스트용 박스 체크하기위해 각 하나 메모장을 넣어줄것이다.</Memo> */}
+        
              <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
         </BookStyle>
         

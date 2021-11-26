@@ -4,9 +4,6 @@ import styled from 'styled-components'
 import {Route,useHistory} from 'react-router-dom'
 import Card from './Card';
 import AddPage from './AddPage';
-import {db} from './firebase'
-import {collection, getDoc, getDocs, addDoc, updateDoc, doc, deleteDoc} from 'firebase/firestore'  
-import { Delete } from '@mui/icons-material';
 import { useDispatch,useSelector} from 'react-redux';
 import {loadBucketFB } from './redux/module/bucket'
 import UpdatePage from './UpdatePage';
@@ -20,7 +17,7 @@ const memo_list = useSelector((state) => state.bucket.list);
 
 
 React.useEffect(async()=>{
-  // console.log("dfsdfdsf")
+  
   dispatch(loadBucketFB());
   
 
