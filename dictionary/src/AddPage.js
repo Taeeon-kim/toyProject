@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch , useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import {useHistory} from 'react-router-dom'
 import { addBucketFB } from './redux/module/bucket';
@@ -12,7 +12,7 @@ const AddPage = (props) => {
     const text1 = React.useRef(null);
     const text2 = React.useRef(null);
     const text3 = React.useRef(null);
-    const bucket_list = useSelector((state)=> state.bucket.list)
+    // const bucket_list = useSelector((state)=> state.bucket.list)
     
     
     const addBucketList = () => {

@@ -33,11 +33,7 @@ const UpdatePage = (props) => {
             index : bucket_index}))
        
         }
-    const Clean = () => {
-        text1.current.value = "";
-        text2.current.value = "";
-        text3.current.value = "";
-    }
+
 
     return (<Adding>
         <Seperation>

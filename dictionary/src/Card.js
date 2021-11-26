@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import {useSelector, useDispatch} from 'react-redux'
 import EditIcon from '@mui/icons-material/Edit';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {useHistory } from 'react-router-dom'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { deleteBucketFB } from './redux/module/bucket';
@@ -73,11 +72,6 @@ const Word = styled.p`
     text-decoration: underline;
 `;
 
-const MenuDot = styled(MoreVertIcon)`
-border-radius: 10px;
-position: relative; //나중에 수정해야한다
-left: 150px;
-    &:hover{ background-color : #dddddd};
-`;
+
 
 export default Card;

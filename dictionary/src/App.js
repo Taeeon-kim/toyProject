@@ -16,9 +16,9 @@ const dispatch = useDispatch()
 const memo_list = useSelector((state) => state.bucket.list);
 
 
-React.useEffect(async()=>{
+React.useEffect( async ()=>{
   
-  dispatch(loadBucketFB());
+ await dispatch(loadBucketFB());
   
 
 },[memo_list.length]);
@@ -66,23 +66,6 @@ color: slateblue;
 text-align: center;
 `;
 
-const AddButton = styled.a`
-display :flex;
- border : 1px solid red;
- width: 50px;
- height: 50px;
- background: red;
- border-radius: 50%;
- color: white;
- font-weight: bold;
- align-items: center;
- justify-content: center;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  cursor: pointer;
-  &:hover { background: #ff5454; border: #ff5454; box-shadow: 5px 5px 10px #742b2b}
-`;
 
 const Icon = styled(AddCircleIcon)`
 /* margin: 10px; */

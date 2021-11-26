@@ -51,7 +51,7 @@ export const loadBucketFB=()=>{
         bucket_list.sort(function (a,b){
             return b.date - a.date
         })
-        console.log(bucket_list)
+        // console.log(bucket_list)
         dispatch(loadBucket(bucket_list));
     }
 }
@@ -123,12 +123,12 @@ const bucket_index = _bucket_list.findIndex((b)=> {
         }
 
         case 'bucket/DELETE' : {
-            console.log(state, action)
+            // console.log(state, action)
             const new_bucket_list = state.list.filter((l,idx)=> 
         {   
             return parseInt(action.bucket_index) !== idx;
         });
-     console.log(new_bucket_list)
+    //  console.log(new_bucket_list)
     
             return {...state, list : new_bucket_list};
 
