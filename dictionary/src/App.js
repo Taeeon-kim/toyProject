@@ -20,7 +20,6 @@ React.useEffect( async ()=>{
   
  await dispatch(loadBucketFB());
   
-
 },[memo_list.length]);
 
 
@@ -42,11 +41,9 @@ React.useEffect( async ()=>{
       <UpdatePage />
       </Route>     
         </Container>
-       
     </div>
   );
 }
-
 const Container = styled.div`
 
 /* min-height: 60vh; */

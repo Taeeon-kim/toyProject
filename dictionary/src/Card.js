@@ -9,8 +9,8 @@ import { deleteBucketFB } from './redux/module/bucket';
 
 
 const Card = (props) => {
-    
-     const history = useHistory(); 
+
+    const history = useHistory(); 
     const memo_list = useSelector((state) => state.bucket.list); //리덕스 스토어에서 list 값 가져옴
     const dispatch  = useDispatch();
 
@@ -26,7 +26,6 @@ const Card = (props) => {
                         {memo.desc}
                         <Word>예시</Word>
                         <span style={{color : "#78b6ff"}}>{memo.ex}</span>
-                    
                     </MemoContainer>
                     )
             })}
@@ -46,7 +45,6 @@ width: 100%;
     /* flex-direction: column; */
    /* padding: 0p; */
    
- 
 `;
 
 const MemoContainer = styled.div`
@@ -58,7 +56,6 @@ const MemoContainer = styled.div`
     border-radius: 10px;
     background: rgb(255,255,255);
     &:hover { box-shadow: 10px 10px 10px #ddd}
-   
 `;
 
 const Word = styled.p`
