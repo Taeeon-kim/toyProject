@@ -39,7 +39,7 @@ const AspectOutter =styled.div`
 
 const AspectInner = styled.div`
     position : relative;
-    padding-top: 75%;
+    padding-top: 75%;   // 화면에서 4:3비율로 보이기위해
     overflow:hidden;
     background-image: url("${(props)=> props.src}");
     background-size: cover;
@@ -50,7 +50,7 @@ const ImageCircle = styled.div`
     /* width: 36px;
     height: 36px;
     border-radius: 36px; */
-    width: var(--size);
+    width: var(--size); //위에 --size 변수를 쓸땐 이렇게 var하고 ()안에 넣어준다.
     height: var(--size);
     border-radius: var(--size);
 
