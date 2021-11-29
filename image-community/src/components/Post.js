@@ -1,27 +1,30 @@
 import React from "react";
-import Grid from "../elements/Grid";
-import Image from "../elements/Image";
-import Text from "../elements/Text";
+import {Grid,Text,Image} from "../elements/index"   //import 를 한 js파일에 묶어서 export 함
+// import Grid from "../elements/Grid";
+// import Image from "../elements/Image";
+// import Text from "../elements/Text";
+
 
 const Post =(props) => {
 
-
+  
     return (
         <React.Fragment>
             <Grid padding="16px">
                 <Grid is_flex>
                     <Image shape="circle" src ={props.src}/>
                     <Text bold>{props.user_info.user_name}</Text>
+                    <Text bold>{props.insert_dt}</Text>
                 {/* user profile / user name / insert_dt(작성시간) / is_me btn(요건 로그인때함) */}
                 </Grid>
                 <Grid padding="16px">
-                contents 내용 쓰세요! 인도어 클라임!
+                    <Text>{props.contents} </Text>
                 </Grid>
                 <Grid>
                 <Image shape="rectangle" src={props.src}/>
                 </Grid > 
                 <Grid padding="16px"> 
-                comment cnt 좋아요 카운트 10개
+                <Text bold>댓글 {props.comment_cnt}개</Text>
                 </Grid>
     
             </Grid>
