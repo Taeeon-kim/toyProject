@@ -23,11 +23,7 @@ const Image =(props) =>{
         )
 
     }
-    return (
-        <React.Fragment>
-
-        </React.Fragment>
-    )
+    
 }
 
 Image.defaultProps = {
