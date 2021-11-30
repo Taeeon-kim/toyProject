@@ -1,14 +1,21 @@
 import React from "react";
 import { Text, Input, Grid, Button } from "../elements";
-import {getCookie,setCookie,deleteCookie} from "../shared/Cookie"
-const Login = (props) => {
+// import {getCookie,setCookie,deleteCookie} from "../shared/Cookie"
+import { useDispatch } from "react-redux";
+import {actionCreators as userActions} from '../redux/modules/user'
 
-  console.log(getCookie("user_pwd"))  
+
+const Login = (props) => {
+  const dispatch=useDispatch();
   const login = () =>{    // 나중에 매개변수로 id,와 pwd 넘겨주면될거같다.
 
-    setCookie("user_id", "perl", 3);  //이부분을 id에 넘겨받은 값
-    setCookie("user_pwd", "pppp", 3);  // 이부분은 pwd 로 넘겨받은 값을 넣을거 구상해보자
+    dispatch(userActions.loginAction({user_name :'perl'}));
+
+    // setCookie("user_id", "perl", 3);  //이부분을 id에 넘겨받은 값
+    // setCookie("user_pwd", "pppp", 3);  // 이부분은 pwd 로 넘겨받은 값을 넣을거 구상해보자
     
+
+
   }
   return (
     <React.Fragment>

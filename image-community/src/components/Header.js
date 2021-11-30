@@ -1,23 +1,19 @@
 import React from "react";
 import {Grid, Text, Button} from "../elements";
 import { getCookie, deleteCookie,setCookie } from "../shared/Cookie";
-
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 const Header = (props) => {
-    const [is_login, setIsLogin] = React.useState(false); //초기 false 로 가져와서 로그인을 안했다라고 해줌
+    // const [is_login, setIsLogin] = React.useState(false); //초기 false 로 가져와서 로그인을 안했다라고 해줌
+    const dispatch = useDispatch();
+    const is_login =useSelector((state)=> state.user.is_login);
     const login = () =>{    // 나중에 매개변수로 id,와 pwd 넘겨주면될거같다.
 
-        setCookie("user_id", "perl", 3);  //이부분을 id에 넘겨받은 값
-        setCookie("user_pwd", "pppp", 3);  // 이부분은 pwd 로 넘겨받은 값을 넣을거 구상해보자
+    //     setCookie("user_id", "perl", 3);  //이부분을 id에 넘겨받은 값
+    //     setCookie("user_pwd", "pppp", 3);  // 이부분은 pwd 로 넘겨받은 값을 넣을거 구상해보자
         
       }
-    React.useEffect(() =>{
-        let cookie= getCookie("user_id")
-        console.log(cookie)
-
-        if(cookie){
-            setIsLogin(true)    //이 값들에 따라 state 값이 변하게되므로 리랜더링된다.
-        } else{setIsLogin(false)}
-    },[])
+    
     if(is_login){
         return(
             <React.Fragment>
@@ -29,7 +25,7 @@ const Header = (props) => {
                     <Grid is_flex>
                         <Button text="내정보"></Button>
                         <Button text="알림"></Button>
-                        <Button text="로그아웃" _onClick={()=> {deleteCookie("user_id", "user_pwd")}}></Button>
+                        <Button text="로그아웃" _onClick={()=> {dispatch(userActions.logOut({}))}}></Button>
                     </Grid>
                 </Grid>
             </React.Fragment>
