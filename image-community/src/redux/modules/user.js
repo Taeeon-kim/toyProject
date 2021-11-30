@@ -2,8 +2,8 @@ import {createAction, createActions, handleActions}from "redux-actions";
 import {produce} from "immer";
 import {setCookie, getCookie, deleteCookie} from "../../shared/Cookie";
 import { auth } from "../../shared/firebase";
-import { createBrowserHistory } from "history";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// import { createBrowserHistory } from "history";
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 //기존 redux 액션생성함수,리듀서 다 ~ export 로 만들었는데 redux-actions 쓸때는 export 안붙이는게 많다 그 이유는? 아래 action creator export 하는 함수가있다.
 // actions
@@ -47,6 +47,14 @@ const signupFB =(id, pwd, user_name) => {
         .then((user) => {
           // Signed in
           console.log(user)
+
+          auth.currentUser.updateProfile({       //파이어베이스 공식문서 사용자관리 목록에 보면 업데이트하는법 나와있다.
+            displayName : user_name,
+
+          }).then(()=> { 
+              dispatch(setUser({user_name:user_name, id:id, user_profile: ''}))
+              history.push('/');
+          }).catch((error)=>{ console.log(error)});
           // ...
         })
         .catch((error) => {
@@ -55,6 +63,9 @@ const signupFB =(id, pwd, user_name) => {
           console.log(errorCode, errorMessage);
           // ..
         });
+
+
+
 
         //아래 웹 9버전은 안됨
 //         const auth = getAuth();
