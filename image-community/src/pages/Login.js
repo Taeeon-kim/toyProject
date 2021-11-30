@@ -3,11 +3,12 @@ import { Text, Input, Grid, Button } from "../elements";
 import {getCookie,setCookie,deleteCookie} from "../shared/Cookie"
 const Login = (props) => {
 
-  console.log(getCookie("user_id")) 
-  const login = () =>{
+  console.log(getCookie("user_pwd"))  
+  const login = () =>{    // 나중에 매개변수로 id,와 pwd 넘겨주면될거같다.
 
-    setCookie("user_id", "perl",3);
-    setCookie("user_pwd", "pppp", 3);
+    setCookie("user_id", "perl", 3);  //이부분을 id에 넘겨받은 값
+    setCookie("user_pwd", "pppp", 3);  // 이부분은 pwd 로 넘겨받은 값을 넣을거 구상해보자
+    
   }
   return (
     <React.Fragment>
@@ -38,8 +39,8 @@ const Login = (props) => {
           text="로그인하기"
           _onClick={() => {
             console.log("로그인 했어!");
-            login();
-            // deleteCookie("user_id");
+            login();  // 나중에 매개변수로 id,와 pwd 넘겨주면될거같다.
+            // deleteCookie("user_id", "user_pwd");   // 아이디와 비번 쿠키값 삭제
           }}
         ></Button>
       </Grid>
