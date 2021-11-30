@@ -24,6 +24,7 @@ const ElButton = styled.button`
     padding: 12px 0px;
     box-sizing: border-box;
     border: none;
+    
 `;
 
 export default Button;
