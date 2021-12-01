@@ -151,7 +151,7 @@ const logoutFB = () => {
 
 // Reducer
 export default handleActions({   // 만들때부터 export 해줌
-    [SET_USER]: (state,action) => produce(state, (draft)=>{  //기존 state를 첫번째 넣어줌 Immer가 state를 복사해서 가져올걸 draft 라고 지정하고 받아옴
+    [SET_USER]: (state,action) => produce(state, (draft)=>{  //기존 state를 첫번째 넣어줌 produce로 Immer를사용 state를 복사해서 가져올걸 draft 라고 지정하고 받아옴
         setCookie("is_login","success");
 
         draft.user = action.payload.user;  //draft 로 복사한걸 막바꾸면된다. creator 를쓰면 payload 라는 중간게 더 생기는데 이 payload가 우리가 넘겨줬던 값을 가지고있다.
