@@ -1,20 +1,22 @@
 import React from "react";
 import {Grid, Text, Button} from "../elements";
-import { getCookie, deleteCookie,setCookie } from "../shared/Cookie";
+// import { getCookie, deleteCookie,setCookie } from "../shared/Cookie";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import {history} from "../redux/configureStore"
+import {apiKey} from "../shared/firebase"
+
 const Header = (props) => {
     // const [is_login, setIsLogin] = React.useState(false); //초기 false 로 가져와서 로그인을 안했다라고 해줌
     const dispatch = useDispatch();
     const is_login =useSelector((state)=> state.user.is_login);
-    const login = () =>{    // 나중에 매개변수로 id,와 pwd 넘겨주면될거같다.
 
-    //     setCookie("user_id", "perl", 3);  //이부분을 id에 넘겨받은 값
-    //     setCookie("user_pwd", "pppp", 3);  // 이부분은 pwd 로 넘겨받은 값을 넣을거 구상해보자
-        
-      }
-    
-    if(is_login){
+    const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;    //뒤에 DEFUALT 부분을 잘붙여줘야 아래 getItem 할때 잘뜬다. 왜냐하면  검사페이지의 session storage안에 해당 key 값을 그대로 가져와야 인식하기떄문이다.
+    const is_session = sessionStorage.getItem(_session_key)? true : false;
+    console.log(_session_key);
+    // console.log(sessionStorage.getItem(_session_key)) //이정보는 검사페이지에서 application/ Session Storage에 가서 localhost:3000dmf snffjtj 해당Key와 value 가 있는곳을 누르면 같은 정보가있다.
+    console.log(is_session)
+    if(is_login && is_session){
         return(
             <React.Fragment>
                 <Grid is_flex padding="4px 16px">
@@ -40,8 +42,8 @@ const Header = (props) => {
                 </Grid>
                 
                 <Grid is_flex>
-                    <Button text="로그인" _onClick={()=> login()}></Button>
-                    <Button text="회원가입"></Button>
+                    <Button text="로그인" _onClick={()=> history.push('/login')}></Button>
+                    <Button text="회원가입" _onClick={()=> history.push('/signup')}></Button>
                 </Grid>
             </Grid>
         </React.Fragment>

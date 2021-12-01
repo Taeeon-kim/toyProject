@@ -1,6 +1,8 @@
 import firebase from "firebase/compat/app";    // /app 을 붙여야한다
 import "firebase/compat/auth";
 
+
+
 const firebaseConfig ={
     apiKey: "AIzaSyCZHZ23qY1b0nm5Gc9Si8EExMyXFBAwnEo",
   authDomain: "image-community-23d24.firebaseapp.com",
@@ -14,7 +16,8 @@ const firebaseConfig ={
 
 firebase.initializeApp(firebaseConfig);
 
+const apiKey = firebaseConfig.apiKey;
 const auth = firebase.auth();   //인증만들어줌
 
 
-export {auth};
+export {auth, apiKey};

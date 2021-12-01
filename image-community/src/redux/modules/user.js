@@ -1,13 +1,16 @@
-import {createAction, createActions, handleActions}from "redux-actions";
+import {createAction, handleActions}from "redux-actions";
 import {produce} from "immer";
-import {setCookie, getCookie, deleteCookie} from "../../shared/Cookie";
-import { auth } from "../../shared/firebase";
+import {setCookie, deleteCookie} from "../../shared/Cookie";
+import { auth, apiKey } from "../../shared/firebase";
+import firebase from "firebase/compat/app";   
 // import { createBrowserHistory } from "history";
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 //기존 redux 액션생성함수,리듀서 다 ~ export 로 만들었는데 redux-actions 쓸때는 export 안붙이는게 많다 그 이유는? 아래 action creator export 하는 함수가있다.
+
 // actions
-const LOG_IN = "LOG_IN";
+
+// const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
 const GET_USER = "GET_USER";
 const SET_USER ="SET_USER";
@@ -46,23 +49,33 @@ const user_initial = {
 
 const loginFB = (id, pwd) => {
     return function (dispatch, getState, {history}){
-        auth.signInWithEmailAndPassword(id, pwd)     //첫부분 auth. 은 공식문서 앞에 firebase.auth()는 제외하고 씀.
-  .then((user) => {
-      
-      console.log(user);
 
-    //   auth.currentUser
-      dispatch(setUser({user_name:user.user.displayName, id:id, user_profile: ''}))
-    // Signed in
+       auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .then((res) => {
+            auth.signInWithEmailAndPassword(id, pwd)     //첫부분 auth. 은 공식문서 앞에 firebase.auth()는 제외하고 씀.
+            .then((user) => {
+                
+                console.log(user);
+          
+              //   auth.currentUser
+                dispatch(setUser({user_name:user.user.displayName, id:id, user_profile: '', uid: user.user.uid }))
+              // Signed in
+          
+                  history.push('/');
+          
+              // ...
+            })
+            .catch((error) => {
+              var errorCode = error.code;
+              var errorMessage = error.message;
 
-        history.push('/');
+              console.log(errorCode, errorMessage);
+            });
+        //   return firebase.auth().signInWithEmailAndPassword(email, password);
+        })
+        
 
-    // ...
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  });
+       
     }
 }
 
@@ -80,7 +93,7 @@ const signupFB =(id, pwd, user_name) => {
             displayName : user_name,
 
           }).then(()=> { 
-              dispatch(setUser({user_name:user_name, id:id, user_profile: ''}))
+              dispatch(setUser({user_name:user_name, id:id, user_profile: '', uid: user.user.uid }))
               history.push('/');
           }).catch((error)=>{ console.log(error)});
           // ...
@@ -94,6 +107,8 @@ const signupFB =(id, pwd, user_name) => {
 
 
 
+    }
+}
 
         //아래 웹 9버전은 안됨
 //         const auth = getAuth();
@@ -111,9 +126,19 @@ const signupFB =(id, pwd, user_name) => {
 //     console.log(errorCode, errorMessage);
 //     // ..
 //   });
+
+const loginCheckFB = () => {
+    return function (dispatch, getState, {history}){
+        auth.onAuthStateChanged((user)=>{
+            if(user){
+                dispatch(setUser({user_name: user.displayName, user_profile: '', id:user.email, uid: user.uid})) // 여기선 user.user. 으로 안하는건 onAuthStateChanged 이용하여 현재 가져오는건 sessions Storage 에서 가져오는거라 key:value 를 눌러서 경로를 보면 user없이 바로 다이렉트로 값이 있기때문에 두번쓰지않고 한번만 쓴다.
+            }
+            else{
+                dispatch(logOut());
+            }
+        })
     }
 }
-
 
 // Reducer
 export default handleActions({   // 만들때부터 export 해줌
@@ -142,6 +167,7 @@ const actionCreators ={
         getUser,
         loginFB,
         signupFB,
+        loginCheckFB,
 };
 
 
