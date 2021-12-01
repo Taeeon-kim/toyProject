@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "../components/Post";
 import { useSelector, useDispatch } from "react-redux"; //리덕스에 있는 정보가져옴
-import { actionCreators as postActions } from "../redux/modules/post";
+import post, { actionCreators as postActions } from "../redux/modules/post";
 
 const PostList = (props) =>{
     const post_list = useSelector((state)=> state.post.list);    //이 경로는 configureStore.js 에서 rooReducer에 묶어진 변수를 보면알수있다.
@@ -9,7 +9,10 @@ const PostList = (props) =>{
     const dispatch = useDispatch();
 
     React.useEffect(()=>{
-        dispatch(postActions.getPostFB());
+        if(post_list.length===0){
+            dispatch(postActions.getPostFB());
+        }
+
     },[])
     return (
         <React.Fragment>
