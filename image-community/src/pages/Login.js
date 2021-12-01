@@ -3,6 +3,7 @@ import { Text, Input, Grid, Button } from "../elements";
 // import {getCookie,setCookie,deleteCookie} from "../shared/Cookie"
 import { useDispatch } from "react-redux";
 import {actionCreators as userActions} from '../redux/modules/user'
+import { emailCheck } from "../shared/common";
 
 
 const Login = (props) => {
@@ -12,10 +13,22 @@ const Login = (props) => {
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
   const login = () =>{    // 나중에 매개변수로 id,와 pwd 넘겨주면될거같다.
+
+    console.log(id);
+
+    // aa_-.123Aaa@aa.com
+    let _reg = /^[0-9a-zA-Z]([-_.0-9a-zA-Z])*@[0-9a-zA-Z]([-_.0-9a-zA-Z])*.([a-zA-Z])*/;   // ()붙이고 뒤에 *을 붙이면 n번째 반복할수있다는걸 나타냄
+    console.log(_reg.test(id))
+   
+
     if(id === "" || pwd===""){
       window.alert("아이디 혹은 비밀번호를 생략하셨습니다.")
       return;
    }
+   if(!emailCheck(id)){
+     window.alert("이메일형식이 맞지않습니다.");
+   }
+   
    
     dispatch(userActions.loginFB(id,pwd));
 

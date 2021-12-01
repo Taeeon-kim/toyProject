@@ -3,24 +3,25 @@ import styled from "styled-components";
 
 const  Button = (props) => {
 
-    const {text, _onClick, is_float} = props;
+    const {text, _onClick, is_float, children} = props;
   if(is_float){
     return( <React.Fragment>
-             <FloatButton onClick={_onClick}>{text}</FloatButton>
+             <FloatButton onClick={_onClick}>{text? text: children}</FloatButton>
           </React.Fragment>
     )
              }
     return (
       <React.Fragment>
-        <ElButton onClick={_onClick}>{text}</ElButton>
+        <ElButton onClick={_onClick}>{text? text: children}</ElButton>
       </React.Fragment>
     );
 }
 
 Button.defaultProps = {
-    text: "텍스트",
+    text: false,
     _onClick: () => {},
     is_float: false, 
+    children:null,
 }
 
 const ElButton = styled.button`
