@@ -6,10 +6,18 @@ import {actionCreators as userActions} from '../redux/modules/user'
 
 
 const Login = (props) => {
-  const dispatch=useDispatch();
-  const login = () =>{    // 나중에 매개변수로 id,와 pwd 넘겨주면될거같다.
 
-    dispatch(userActions.loginAction({user_name :'perl'}));
+  const dispatch=useDispatch();
+
+  const [id, setId] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
+  const login = () =>{    // 나중에 매개변수로 id,와 pwd 넘겨주면될거같다.
+    if(id === "" || pwd===""){
+      window.alert("아이디 혹은 비밀번호를 생략하셨습니다.")
+      return;
+   }
+   
+    dispatch(userActions.loginFB(id,pwd));
 
     // setCookie("user_id", "perl", 3);  //이부분을 id에 넘겨받은 값
     // setCookie("user_pwd", "pppp", 3);  // 이부분은 pwd 로 넘겨받은 값을 넣을거 구상해보자
@@ -26,9 +34,12 @@ const Login = (props) => {
 
         <Grid padding="16px 0px">
           <Input
-            _onChange={() => {
-              console.log("아이디 입력했어!");
+          label="아이디"
+            _onChange={(e) => {
+             
+            setId(e.target.value)
             }}
+            
           />
         </Grid>
 
@@ -36,8 +47,10 @@ const Login = (props) => {
           <Input
             label="패스워드"
             placeholder="패스워드 입력해주세요."
-            _onChange={() => {
-              console.log("패스워드 입력했어!");
+            type = "password"
+            _onChange={(e) => {
+              
+              setPwd(e.target.value)
             }}
           />
         </Grid>

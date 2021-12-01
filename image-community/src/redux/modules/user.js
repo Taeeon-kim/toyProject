@@ -30,15 +30,43 @@ const user_initial = {
     user_name: 'youngble',
 
 }
+
+// const loginAction = (user) => {    //이제 파이어베이스를 통해 로그인을 한다.
+//     return function (dispatch, getState, {history}){
+//         console.log(history)
+//         dispatch(setUser(user));
+//         history.push('/');
+//     }
+// }
+
+
+
+
 // middleware actions
 
-const loginAction = (user) => {
+const loginFB = (id, pwd) => {
     return function (dispatch, getState, {history}){
-        console.log(history)
-        dispatch(setUser(user));
+        auth.signInWithEmailAndPassword(id, pwd)     //첫부분 auth. 은 공식문서 앞에 firebase.auth()는 제외하고 씀.
+  .then((user) => {
+      
+      console.log(user);
+
+    //   auth.currentUser
+      dispatch(setUser({user_name:user.user.displayName, id:id, user_profile: ''}))
+    // Signed in
+
         history.push('/');
+
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
     }
 }
+
+
 
 const signupFB =(id, pwd, user_name) => {
     return function (dispatch, getState, {history}){
@@ -112,7 +140,7 @@ const actionCreators ={
        
         logOut,
         getUser,
-        loginAction,
+        loginFB,
         signupFB,
 };
 
