@@ -140,6 +140,15 @@ const loginCheckFB = () => {
     }
 }
 
+const logoutFB = () => {
+    return function (dispatch, getState, {history}) {
+        auth.signOut().then(()=> {    //파이어스토어에서 sighout 이되면 then 을 실행하여 dispatch 로 로그아웃 액션을 실행하고 리듀서로감
+            dispatch(logOut());
+            history.replace('/');
+        })
+    }
+}
+
 // Reducer
 export default handleActions({   // 만들때부터 export 해줌
     [SET_USER]: (state,action) => produce(state, (draft)=>{  //기존 state를 첫번째 넣어줌 Immer가 state를 복사해서 가져올걸 draft 라고 지정하고 받아옴
@@ -168,6 +177,7 @@ const actionCreators ={
         loginFB,
         signupFB,
         loginCheckFB,
+        logoutFB,
 };
 
 

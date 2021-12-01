@@ -8,11 +8,13 @@ import { history } from '../redux/configureStore';
 import PostList from "../pages/PostList"
 import Login from '../pages/Login';
 import Header from '../components/Header';
-import {Grid} from '../elements'
+import {Grid, Button} from '../elements'
 import Signup from '../pages/Signup';
 import {actionCreators as userActions} from "../redux/modules/user"
 import {useDispatch} from 'react-redux';
 import {apiKey} from "../shared/firebase"
+import Permit from './Permit';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +37,9 @@ function App() {
       <Route path ="/signup" exact component={Signup} />
       </ConnectedRouter>
       </Grid>
+      <Permit>
+        <Button is_float text="+"> </Button>
+      </Permit>
     </React.Fragment>
   );
 }

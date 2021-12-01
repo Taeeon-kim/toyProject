@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import {history} from "../redux/configureStore"
 import {apiKey} from "../shared/firebase"
+import Permit from "../shared/Permit";
 
 const Header = (props) => {
     // const [is_login, setIsLogin] = React.useState(false); //초기 false 로 가져와서 로그인을 안했다라고 해줌
@@ -15,9 +16,27 @@ const Header = (props) => {
     const is_session = sessionStorage.getItem(_session_key)? true : false;
     console.log(_session_key);
     // console.log(sessionStorage.getItem(_session_key)) //이정보는 검사페이지에서 application/ Session Storage에 가서 localhost:3000dmf snffjtj 해당Key와 value 가 있는곳을 누르면 같은 정보가있다.
-    console.log(is_session)
+    console.log(is_session);
     if(is_login && is_session){
         return(
+            <Permit>
+            <Grid is_flex padding="4px 16px">
+           <Grid>
+               <Text margin="0px" size="24px" bold>헬로</Text>
+           </Grid>
+           
+           <Grid is_flex>
+               <Button text="내정보"></Button>
+               <Button text="알림"></Button>
+               <Button text="로그아웃" _onClick={()=> {dispatch(userActions.logoutFB())}}></Button>
+           </Grid>
+       </Grid>
+      
+   </Permit>
+            )
+    }
+
+          return (
             <React.Fragment>
                 <Grid is_flex padding="4px 16px">
                     <Grid>
@@ -25,29 +44,13 @@ const Header = (props) => {
                     </Grid>
                     
                     <Grid is_flex>
-                        <Button text="내정보"></Button>
-                        <Button text="알림"></Button>
-                        <Button text="로그아웃" _onClick={()=> {dispatch(userActions.logOut({}))}}></Button>
+                        <Button text="로그인" _onClick={()=> history.push('/login')}></Button>
+                        <Button text="회원가입" _onClick={()=> history.push('/signup')}></Button>
                     </Grid>
                 </Grid>
             </React.Fragment>
-            )
-    }
-
-    return (
-        <React.Fragment>
-            <Grid is_flex padding="4px 16px">
-                <Grid>
-                    <Text margin="0px" size="24px" bold>헬로</Text>
-                </Grid>
-                
-                <Grid is_flex>
-                    <Button text="로그인" _onClick={()=> history.push('/login')}></Button>
-                    <Button text="회원가입" _onClick={()=> history.push('/signup')}></Button>
-                </Grid>
-            </Grid>
-        </React.Fragment>
-    )
+        )
+    
 }
 
 Header.defaultProps = {}
