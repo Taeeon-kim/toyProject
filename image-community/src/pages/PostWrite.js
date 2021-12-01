@@ -1,8 +1,29 @@
 import React from 'react';
 import {Grid, Text, Button, Image, Input} from "../elements";
 import Upload from '../shared/Upload';
+import { useSelector, useDispatch } from 'react-redux';
 
-const PostWrite = () => {
+const PostWrite = (props) => {
+    
+    const is_login = useSelector((state)=> state.user.is_login); // 여기서 이미 is_login 으로 로그인 확인한다.
+    const {history} =props;
+    const [contents, setContents] = React.useState("");
+    const changeContents = (e) =>{
+        setContents(e.target.value);
+        
+    }
+
+    // console.log(history)
+    if(!is_login){
+        return(
+            <Grid margin="100px 0px" padding="16px" center>
+            <Text size="32px" bold>잠시만요!</Text>
+            <Text size="16px">로그인후에만 글 쓰기 가능</Text>
+            <Button _onClick={()=>{history.replace('/login')}}>로그인 하러가기</Button>
+        </Grid>
+        )
+       
+    }
     return (
         <React.Fragment>
             <Grid padding="16px">
@@ -16,7 +37,7 @@ const PostWrite = () => {
                 <Image shape="rectangle" />
             </Grid>
             <Grid padding="16px">
-                <Input label="게시글 내용" placeholder="게시글 작성" multiLine/>
+                <Input _onChange={changeContents}  label="게시글 내용" placeholder="게시글 작성" multiLine/>
             </Grid>
 
             <Grid padding="16px">
