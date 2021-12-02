@@ -33,16 +33,17 @@ Image.defaultProps = {
 }
 
 const AspectOutter =styled.div`
-    width: 100%;
+    width: 60%;
     min-width: 250px;
 `;
 
 const AspectInner = styled.div`
     position : relative;
-    padding-top: 75%;   // 화면에서 4:3비율로 보이기위해
+    padding-top: 100%;   // 화면에서 4:3비율로 보이기위해
     overflow:hidden;
     background-image: url("${(props)=> props.src}");
     background-size: cover;
+    
 `;
 
 const ImageCircle = styled.div`
