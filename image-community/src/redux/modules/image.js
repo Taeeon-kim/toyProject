@@ -31,7 +31,7 @@ const uploadImageFB = (image) =>{
                     dispatch(uploadImage(url));
                 console.log(url);
             })
-        })
+        })  
     }
 }
 

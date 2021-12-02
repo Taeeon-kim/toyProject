@@ -17,6 +17,7 @@ import { apiKey } from "../shared/firebase";
 import Permit from "./Permit";
 import CommentList from "../components/CommentList";
 import PostDetail from "../pages/PostDetail";
+import Search from "./Search"
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function App() {
           <Route path="/write" exact component={PostWrite} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/post/:id" exact component={PostDetail} />
+          <Route path="/search" exact component={Search} />
           
           
         </ConnectedRouter>

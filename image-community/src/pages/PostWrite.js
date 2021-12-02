@@ -34,7 +34,7 @@ const PostWrite = (props) => {
                 <Text size="36px" bold>게시글 작성</Text>
                 <Upload/>                      {/*파일선택하는 버튼 */}
             </Grid>
-            <Grid>
+            <Grid >
                 <Grid padding= "16px" bold>
                     <Text margin="0px" size="24px" bold>미리보기</Text>
                 </Grid>
