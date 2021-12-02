@@ -24,6 +24,15 @@ const Image =(props) =>{
         )
 
     }
+
+    if(shape === "square"){
+        return(
+            <React.Fragment>
+                <ImageDefault {...styles}></ImageDefault>
+            </React.Fragment>
+        )
+    }
+
     
 }
 
@@ -34,6 +43,19 @@ Image.defaultProps = {
     width: "100%",
 
 }
+
+const ImageDefault = styled.div`
+      --size: ${(props)=>props.size}px;
+    
+    width: var(--size); //위에 --size 변수를 쓸땐 이렇게 var하고 ()안에 넣어준다.
+    height: var(--size);
+ 
+    min-width: 36px;
+    background-image: url("${(props)=>props.src}");
+    background-size: cover;
+   
+`;
+
 
 const AspectOutter =styled.div`
     width:${(props)=>props.width};

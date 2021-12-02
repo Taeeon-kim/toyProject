@@ -18,6 +18,7 @@ import Permit from "./Permit";
 import CommentList from "../components/CommentList";
 import PostDetail from "../pages/PostDetail";
 import Search from "./Search"
+import Notification from "../pages/Notification";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,10 +40,11 @@ function App() {
         </Permit>
           <Route path="/login" exact component={Login} />
           <Route path="/write" exact component={PostWrite} />
+          <Route path="/write/:id" exact component={PostWrite} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/post/:id" exact component={PostDetail} />
           <Route path="/search" exact component={Search} />
-          
+          <Route path="/noti" exact component={Notification} />
           
         </ConnectedRouter>
       </Grid>

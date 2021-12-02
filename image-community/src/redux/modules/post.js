@@ -1,4 +1,4 @@
-import { createAction, handleActions } from "redux-actions";
+import { createAction, createActions, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { firestore, storage } from "../../shared/firebase";
 import moment from "moment";
@@ -7,9 +7,14 @@ import { actionCreators as imageActions } from "./image";
 
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
+const EDIT_POST = "EDIT_POST";
 
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
 const addPost = createAction(ADD_POST, (post) => ({ post }));
+const editPost = createAction(EDIT_POST, (post_id, post) => ({
+  post_id,
+  post,
+}));
 
 const initialState = {
   list: [],
@@ -27,6 +32,57 @@ const initialPost = {
   contents: "",
   comment_cnt: 0,
   insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
+};
+
+const editPostFB = (post_id = null, post = {}) => {
+  return function (dispatch, getState, { history }) {
+    if (!post_id) {
+      console.log("게시물 정보가 없습니다.");
+      return;
+    }
+
+    const _image = getState().image.preview;
+
+    const _post_idx = getState().post.list.findIndex((p) => p.id === post_id);
+    const _post = getState().post.list[_post_idx];
+
+    const postDB = firestore.collection("post");
+
+    // console.log(_post)
+    if (_image === _post.image_url) {
+      postDB
+        .doc(post_id)
+        .update(post)
+        .then((doc) => {
+          dispatch(editPost(post_id, { ...post }));
+          history.replace("/");
+        });
+      return;
+    } else {
+      const user_id = getState().user.user.uid;
+      const _upload = storage
+        .ref(`images/${user_id}_${new Date().getTime()}`)
+        .putString(_image, "data_url"); //업로드할때 사용자명과 현재시간으로 image를 업로드해줘서 이름중복없이 고유한 파일이 되게해준다
+      _upload.then((snapshot) => {
+        snapshot.ref
+          .getDownloadURL()
+          .then((url) => {
+            console.log(url);
+
+            return url;
+          })
+          .then((url) => {
+            postDB
+              .doc(post_id)
+              .update({ ...post, image_url: url })
+              .then((doc) => {
+                dispatch(editPost(post_id, { ...post, image_url: url }));
+                history.replace("/");
+              });
+          });
+      });
+    }
+  };
 };
 
 const addPostFB = (contents = "") => {
@@ -62,22 +118,28 @@ const addPostFB = (contents = "") => {
         })
         .then((url) => {
           postDB
-            .add({ ...user_info, ..._post,image_url: url })
+            .add({ ...user_info, ..._post, image_url: url })
             .then((doc) => {
-              let post = { user_info: user_info, ..._post, id: doc.id, image_url: url };
+              let post = {
+                user_info: user_info,
+                ..._post,
+                id: doc.id,
+                image_url: url,
+              };
               dispatch(addPost(post));
               history.replace("/");
 
               dispatch(imageActions.setPreview(null));
             })
             .catch((err) => {
-                window.alert("포스트 작성에 문제가 있습니다.");
+              window.alert("포스트 작성에 문제가 있습니다.");
               console.log("post 작성에 실패", err);
             });
-        }).catch((err)=>{
-            window.alert("이미지 업로드에 문제가 있습니다.");
-            console.log("이미지 업로드에 문제가 발생!", err);
         })
+        .catch((err) => {
+          window.alert("이미지 업로드에 문제가 있습니다.");
+          console.log("이미지 업로드에 문제가 발생!", err);
+        });
     });
   };
 };
@@ -125,6 +187,12 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list.unshift(action.payload.post); //뒤로 붙이는게 아닌 앞에 붙여야해서 push가 아닌 unshift를 씀
       }),
+    [EDIT_POST]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.list.findIndex((p) => p.id === action.payload.post_id);
+
+        draft.list[idx] = { ...draft.list[idx], ...action.payload.post };
+      }),
   },
   initialState
 );
@@ -134,6 +202,8 @@ const actionCreators = {
   addPost,
   getPostFB,
   addPostFB,
+  editPost,
+  editPostFB,
 };
 
 export { actionCreators };
