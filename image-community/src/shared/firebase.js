@@ -1,6 +1,7 @@
 import firebase from "firebase/compat/app";    // /app 을 붙여야한다
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import "firebase/compat/storage"
 // import "firebase/firestore";
 
 const firebaseConfig ={
@@ -19,5 +20,6 @@ firebase.initializeApp(firebaseConfig);
 const apiKey = firebaseConfig.apiKey;
 const auth = firebase.auth();   //인증만들어줌
 const firestore = firebase.firestore();   //파이어베이스 스토어 만들어줌
+const storage = firebase.storage();
 
-export {auth, apiKey, firestore};
+export {auth, apiKey, firestore, storage};

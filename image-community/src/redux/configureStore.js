@@ -5,12 +5,14 @@ import { connectRouter } from "connected-react-router";
 
 import User from "./modules/user";  //handleActions 에서 반환?한것들의 별명인듯하다
 import Post from "./modules/post";  //handleActions 에서 반환?한것들의 별명인듯하다
+import Image from "./modules/image";
 
 export const history =createBrowserHistory();
 
 const rootReducer = combineReducers({
   user: User,
   post: Post,
+  image: Image,
   router: connectRouter(history),
 });
 
