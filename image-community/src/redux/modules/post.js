@@ -18,6 +18,8 @@ const editPost = createAction(EDIT_POST, (post_id, post) => ({
 
 const initialState = {
   list: [],
+  Paging: {start: null, next: null, sieze: 3},
+  is_loading: false,
 };
 
 const initialPost = {
@@ -147,7 +149,35 @@ const addPostFB = (contents = "") => {
 const getPostFB = () => {
   return function (dispatch, getState, { history }) {
     const postDB = firestore.collection("post");
+    
+    let query = postDB.orderBy("insert_dt", "desc").limit(5);
+    query.get().then(docs =>{
+        let post_list = [];
+        docs.forEach((doc) => {
+          let _post = doc.data(); //파이어스토어에서 문서가져옴
+          console.log(_post);
+          let post = Object.keys(_post).reduce(
+            (acc, cur) => {
+              // 키값들을 배열로 만들어줌
+              if (cur.indexOf("user_") !== -1) {
+                return {
+                  ...acc,
+                  user_info: { ...acc.user_info, [cur]: _post[cur] },
+                };
+              }
+              return { ...acc, [cur]: _post[cur] }; //_post[cur] 이라는건 value로써 키에 해당하는 value를
+            },
+            { id: doc.id, user_info: {} }
+          ); //처음 기본값을 _post에 없는 id: doc.id 를 미리 넣고
+  
+          post_list.push(post);
+        });
+  
+        console.log(post_list);
+        dispatch(setPost(post_list));
+    })
 
+    return;
     postDB.get().then((docs) => {
       let post_list = [];
       docs.forEach((doc) => {
