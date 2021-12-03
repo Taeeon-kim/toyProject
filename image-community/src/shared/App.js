@@ -35,9 +35,9 @@ function App() {
       <Grid>
         <Header></Header>
         <ConnectedRouter history={history}>
-        <Permit>
+        {/* <Permit> */}
           <Route path="/" exact component={PostList} />
-        </Permit>
+        {/* </Permit> */}
           <Route path="/login" exact component={Login} />
           <Route path="/write" exact component={PostWrite} />
           <Route path="/write/:id" exact component={PostWrite} />

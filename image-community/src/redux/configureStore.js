@@ -3,28 +3,29 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
-import User from "./modules/user";  //handleActions 에서 반환?한것들의 별명인듯하다
-import Post from "./modules/post";  //handleActions 에서 반환?한것들의 별명인듯하다
+import User from "./modules/user";
+import Post from "./modules/post";
 import Image from "./modules/image";
+import Comment from "./modules/comment";
 
-export const history =createBrowserHistory();
+export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   user: User,
   post: Post,
   image: Image,
+  comment: Comment,
   router: connectRouter(history),
 });
 
-const middlewares = [thunk.withExtraArgument({history:history})];    // 여기서 thunk가 dispatch 와 getState 를 가지고있다. 이때 미들함수일때만 사용할수있다.
+const middlewares = [thunk.withExtraArgument({ history: history })];
 
 // 지금이 어느 환경인 지 알려줘요. (개발환경, 프로덕션(배포)환경 ...)
-const env = process.env.NODE_ENV; //지금 어느환경인지 알려준다. 여기선 개발환경development 로 나온다.
+const env = process.env.NODE_ENV;
 
 // 개발환경에서는 로거라는 걸 하나만 더 써볼게요.
 if (env === "development") {
-  // 그래서 개발환경일때
-  const { logger } = require("redux-logger"); //로거라는걸 패키지redux-logger 에서 가져온다. 왜냐하면 프로덕션에서는 필요없는데 임포트할필요없어서 개발환경일때만 쓰도록한것이다
+  const { logger } = require("redux-logger");
   middlewares.push(logger);
 }
 

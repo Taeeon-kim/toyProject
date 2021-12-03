@@ -20,7 +20,7 @@ const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
 
 const initialState = {
   list: [],
-  Paging: { start: null, next: null, size: 3 },
+  paging: { start: null, next: null, size: 3 },
   is_loading: false,
 };
 
@@ -154,7 +154,7 @@ const getPostFB = (start = null, size = 3) => {
 
     let _paging = getState().post.paging;
 
-    if( _paging  && !_paging.next){
+    if( _paging.start  && (!_paging.next)){
         return ;
     }
 
@@ -204,41 +204,55 @@ const getPostFB = (start = null, size = 3) => {
         dispatch(setPost(post_list, paging));
       });
 
-    // return;
-    // postDB.get().then((docs) => {
-    //   let post_list = [];
-    //   docs.forEach((doc) => {
-    //     let _post = doc.data(); //파이어스토어에서 문서가져옴
-    //     console.log(_post);
-    //     let post = Object.keys(_post).reduce(
-    //       (acc, cur) => {
-    //         // 키값들을 배열로 만들어줌
-    //         if (cur.indexOf("user_") !== -1) {
-    //           return {
-    //             ...acc,
-    //             user_info: { ...acc.user_info, [cur]: _post[cur] },
-    //           };
-    //         }
-    //         return { ...acc, [cur]: _post[cur] }; //_post[cur] 이라는건 value로써 키에 해당하는 value를
-    //       },
-    //       { id: doc.id, user_info: {} }
-    //     ); //처음 기본값을 _post에 없는 id: doc.id 를 미리 넣고
-
-    //     post_list.push(post);
-    //   });
-
-    //   console.log(post_list);
-    //   dispatch(setPost(post_list));
-    // });
   };
 };
+
+
+const getOnePostFB =(id)=>{
+  return function(dispatch, getState, {history}){
+    const postDB = firestore.collection("post");
+
+        postDB.doc(id).get().then(doc=>{
+
+            let _post = doc.data();
+            let post = Object.keys(_post).reduce(
+                (acc, cur) => {
+                  // 키값들을 배열로 만들어줌
+                  if (cur.indexOf("user_") !== -1) {
+                    return {
+                      ...acc,
+                      user_info: { ...acc.user_info, [cur]: _post[cur] },
+                    };
+                  }
+                  return { ...acc, [cur]: _post[cur] }; //_post[cur] 이라는건 value로써 키에 해당하는 value를
+                },
+                { id: doc.id, user_info: {} }
+              ); //처음 기본값을 _post에 없는 id: doc.id 를 미리 넣고
+               dispatch(setPost([post])) 
+        })
+  }
+}
 
 export default handleActions(
   {
     [SET_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.list.push(...action.payload.post_list); //draft.list 를 action으로 넘어와서 payload에 있는 post_list 를 넣어서 복사해줌, 이건 위에 getPostFB에서  map과 push, setPost등등으로 넘겨서 가져온것이다
-        draft.paging = action.payload.paging;
+        
+        draft.list= draft.list.reduce((acc,cur) =>{
+            if(acc.findIndex(a=> a.id===cur.id)=== -1){
+              return [...acc, cur];
+            }else{
+              acc[acc.findIndex(a=> a.id===cur.id)] =cur;
+              return acc;
+            }
+        },[]);
+        
+
+        if(action.payload.paging)
+        {
+          draft.paging = action.payload.paging;
+        }
         draft.is_loading = false;
     }),
 
@@ -267,6 +281,7 @@ const actionCreators = {
   addPostFB,
   editPost,
   editPostFB,
+  getOnePostFB,
 };
 
 export { actionCreators };
