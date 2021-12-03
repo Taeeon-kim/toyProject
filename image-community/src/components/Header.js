@@ -14,9 +14,9 @@ const Header = (props) => {
 
     const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;    //뒤에 DEFUALT 부분을 잘붙여줘야 아래 getItem 할때 잘뜬다. 왜냐하면  검사페이지의 session storage안에 해당 key 값을 그대로 가져와야 인식하기떄문이다.
     const is_session = sessionStorage.getItem(_session_key)? true : false;
-    console.log(_session_key);
+    // console.log(_session_key);
     // console.log(sessionStorage.getItem(_session_key)) //이정보는 검사페이지에서 application/ Session Storage에 가서 localhost:3000dmf snffjtj 해당Key와 value 가 있는곳을 누르면 같은 정보가있다.
-    console.log(is_session);
+    // console.log(is_session);
     if(is_login && is_session){
         return(
             <Permit>
