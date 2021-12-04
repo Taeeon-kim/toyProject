@@ -35,7 +35,7 @@ const addCommentFB = (post_id, contents) => {
         user_name: user_info.user_name,
         user_profile: user_info.user_profile,
         contents: contents,
-        insert_dt: moment().format("YYYY-MM-DD HH:mm:ss")
+        insert_dt: moment().format("YYYY-MM-DD HH:mm:ss") //HH 부분을 소문자 hh로하면 오전 오후 나눠지지 않는다
       }
 
        //파이어스토어에 밀어넣는다
