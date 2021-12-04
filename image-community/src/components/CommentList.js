@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Image, Text } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as commentActions } from "../redux/modules/comment";
+import comment, { actionCreators as commentActions } from "../redux/modules/comment";
 
 const CommentList = (props) => {
 
