@@ -6,17 +6,17 @@ import _ from "lodash";
 const InfinityScroll = (props) => {
   const { children, callNext, is_next, loading } = props;
 
-  // 쓰로틀을 적용합시다!
+  // 쓰로틀 적용
   const _handleScroll = _.throttle(() => {
     const { innerHeight } = window;
     const { scrollHeight } = document.body;
 
     // 스크롤 계산!
     const scrollTop =
-      (document.documentElement && document.documentElement.scrollTop) ||
+      (document.documentElement && document.documentElement.scrollTop) || //document.documenElement 가있으면 ...scrollTop을 가져와라 아니면 ..body.scrollTop을 가져와라
       document.body.scrollTop;
 
-    if (scrollHeight - innerHeight - scrollTop < 200) {
+    if (scrollHeight - innerHeight - scrollTop < 200) {   //계산해서 내려갈때 200px 보다 작아지면 다시불러오게하기
       // 로딩 중이면 다음 걸 부르면 안되겠죠!
       if (loading) {
         return;

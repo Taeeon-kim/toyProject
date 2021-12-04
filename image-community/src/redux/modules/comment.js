@@ -35,14 +35,14 @@ const addCommentFB = (post_id, contents) => {
         user_name: user_info.user_name,
         user_profile: user_info.user_profile,
         contents: contents,
-        insert_dt: moment().format("YYYY-MM-DD hh:mm:ss")
+        insert_dt: moment().format("YYYY-MM-DD HH:mm:ss")
       }
 
        //파이어스토어에 밀어넣는다
        commentDB.add(comment).then((doc)=>{
          const postDB = firestore.collection("post");
          const post = getState().post.list.find((l) => l.id === post_id);
-         console.log(getState())
+        //  console.log(getState())
         //  post.find(l => l.id === post.id);  //post에 있는 정보를 가져와서 비교하고 같은값을 넣어줌, 강의대로 여기서 getState()를 붙이면 initialization 안되서 못쓴다고함 그래서 위에서 선언부터함
         
          const increment = firebase.firestore.FieldValue.increment(1);  //increment에 들어있는 숫자만큼을 현재가진거에 값에서 추가해줌

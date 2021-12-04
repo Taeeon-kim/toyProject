@@ -264,7 +264,7 @@ export default handleActions(
       }),
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload)
+        // console.log(action.payload)
         let idx = draft.list.findIndex((p) => p.id === action.payload.post_id);
 
         draft.list[idx] = { ...draft.list[idx], ...action.payload.post };
