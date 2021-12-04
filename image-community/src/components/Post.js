@@ -45,7 +45,7 @@ Post.defaultProps = {     // 정보를 안줘서 화면이 깨지거나 오류�
     },
     image_url :"https://youngble.s3.ap-northeast-2.amazonaws.com/KakaoTalk_Photo_2021-11-17-00-56-23.jpeg",
     contents: "스파르타네요!",
-    comment_cnt : 10,
+    comment_cnt : 0,
     insert_dt : "2021-11-29 14:14",
     is_me: false,
 };

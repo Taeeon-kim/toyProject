@@ -36,7 +36,7 @@ const initialPost = {
     "https://youngble.s3.ap-northeast-2.amazonaws.com/KakaoTalk_Photo_2021-11-17-00-56-23.jpeg",
   contents: "",
   comment_cnt: 0,
-  insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
+  insert_dt: moment().format("YYYY-MM-DD HH:mm:ss"),   // 포스트 게시물도 오전오후 나눠줌
 };
 
 const editPostFB = (post_id = null, post = {}) => {
@@ -104,7 +104,7 @@ const addPostFB = (contents = "") => {
     const _post = {
       ...initialPost,
       contents: contents,
-      insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
+      insert_dt: moment().format("YYYY-MM-DD HH:mm:ss"),  //오전 오후 분리 HH
     };
 
     const _image = getState().image.preview;

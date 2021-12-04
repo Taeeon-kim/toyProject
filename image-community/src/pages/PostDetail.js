@@ -26,29 +26,7 @@ const PostDetail = (props) => {
            return; 
         }
         dispatch(postActions.getOnePostFB(id));
-        // const postDB = firestore.collection("post");
-        // postDB.doc(id).get().then(doc => {
-        //     console.log(doc);
-        //     console.log(doc.data());
-            
-        //     let _post = doc.data();
-        //     let post = Object.keys(_post).reduce(
-        //       (acc, cur) => {
-        //         if (cur.indexOf("user_") !== -1) {
-        //           return {
-        //             ...acc,
-        //             user_info: { ...acc.user_info, [cur]: _post[cur] },
-        //           };
-        //         }
-        //         return { ...acc, [cur]: _post[cur] };
-        //       },
-        //       { id: doc.id, user_info: {} }
-        //     );
-
-        //     setPost(post);
-        // })
-
-
+        
     }, []);
 
     return (
