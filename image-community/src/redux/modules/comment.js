@@ -27,7 +27,8 @@ const addCommentFB = (post_id, contents) => {
       const commentDB= firestore.collection("comment");
       // const postDB = firestore.collection("post");
       const user_info = getState().user.user;
-      const post = getState().post.list;
+      // const post = getState().post.list;
+      // console.log(getState().post.list)
       let comment ={
         post_id: post_id,
         user_id: user_info.uid,
@@ -40,21 +41,21 @@ const addCommentFB = (post_id, contents) => {
        //파이어스토어에 밀어넣는다
        commentDB.add(comment).then((doc)=>{
          const postDB = firestore.collection("post");
-       
-
-
-
-         post.find(l => l.id === post.id);  //post에 있는 정보를 가져와서 비교하고 같은값을 넣어줌, 강의대로 여기서 getState()를 붙이면 initialization 안되서 못쓴다고함 그래서 위에서 선언부터함
-
+         const post = getState().post.list.find((l) => l.id === post_id);
+         console.log(getState())
+        //  post.find(l => l.id === post.id);  //post에 있는 정보를 가져와서 비교하고 같은값을 넣어줌, 강의대로 여기서 getState()를 붙이면 initialization 안되서 못쓴다고함 그래서 위에서 선언부터함
+        
          const increment = firebase.firestore.FieldValue.increment(1);  //increment에 들어있는 숫자만큼을 현재가진거에 값에서 추가해줌
          // let a = 5; a= a+5 처럼작동한다
          comment = {...comment, id: doc.id }
          postDB.doc(post_id).update({comment_cnt: increment}).then((_post)=>{ //따라서 1만큼 comment_cnt 에 +1 을 해준다. comment_cnt = comment_cnt +1;
           
           dispatch(addComment(post_id, comment)); //여기까지오면 댓글작성 성공, post 게시물도 업데이트하는데 성공했다. 따라서 이제 실제로 업데이트시켜주자
-
+          // console.log(post)
+          // console.log(post.comment_cnt)
           if(post){
-            dispatch(postActions.editPost(post_id, {comment_cnt: parseInt(post.comment_cnt)+1 
+            // console.log(post.comment_cnt)
+            dispatch(postActions.editPost(post_id, {comment_cnt: parseInt(post.comment_cnt)+1, 
             }))
           }
 

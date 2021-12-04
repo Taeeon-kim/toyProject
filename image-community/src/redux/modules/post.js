@@ -22,6 +22,7 @@ const initialState = {
   list: [],
   paging: { start: null, next: null, size: 3 },
   is_loading: false,
+  // comment_cnt: 0,
 };
 
 const initialPost = {
@@ -93,7 +94,8 @@ const addPostFB = (contents = "") => {
   return function (dispatch, getState, { history }) {
     const postDB = firestore.collection("post");
     const _user = getState().user.user; // getState스토어에있는 정보가져옴
-
+    
+    
     const user_info = {
       user_name: _user.user_name,
       user_id: _user.uid,
@@ -262,6 +264,7 @@ export default handleActions(
       }),
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
+        console.log(action.payload)
         let idx = draft.list.findIndex((p) => p.id === action.payload.post_id);
 
         draft.list[idx] = { ...draft.list[idx], ...action.payload.post };
