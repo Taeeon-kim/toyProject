@@ -4,12 +4,16 @@ import { useSelector, useDispatch } from "react-redux"; //리덕스에 있는 �
 import post, { actionCreators as postActions } from "../redux/modules/post";
 import InfinityScroll from "../shared/InfinityScroll";
 import { Grid } from "../elements";
+import { apiKey } from "../shared/firebase";
 // import {  history } from "../redux/configureStore";
 const PostList = (props) => {
   const post_list = useSelector((state) => state.post.list); //이 경로는 configureStore.js 에서 rooReducer에 묶어진 변수를 보면알수있다.
   const user_info = useSelector((state) => state.user.user);
   const is_loading = useSelector((state) => state.post.is_loading);
   const paging = useSelector((state) => state.post.paging);
+  const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;
+  const is_login = useSelector((state)=> state.user.is_login);
+  const is_session = sessionStorage.getItem(_session_key) ? true : false;
   
   const { history } = props;
   const dispatch = useDispatch();
@@ -47,7 +51,7 @@ const PostList = (props) => {
               return (
                 <Grid key={p.id}
                   _onClick={() => {
-                    history.push(`/post/${p.id}`);
+                    {is_login&&is_session?history.push(`/post/${p.id}`): history.push("/login") } 
                   }}
                 >
                   <Post key={p.id} {...p} />
