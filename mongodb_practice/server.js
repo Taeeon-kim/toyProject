@@ -9,5 +9,5 @@ app.get('/pet', function(request, response){
     response.send('펫용품 쇼핑할 수 있는 페이지입니다.');
 })
 app.get('/beauty', function(request, response){
-    response.send('퓨티용품 쇼핑할 수 있는 페이지입니다. ');
+    response.send('퓨티용품 쇼핑할 수 있는 페이지입니다.');
 })
