@@ -1,15 +1,13 @@
-function add(n1, n2, showResult, resultPhrase) {
-    var result = n1 + n2;
-    if (showResult) {
-        console.log(resultPhrase + result);
-    }
-    else {
-        return n1 + n2;
-    }
+function add(n1, n2) {
+    return n1 + n2;
 }
-var number1;
-number1 = 5;
-var number2 = 2.8;
-var printResult = true;
-var resultPhrase = 'Result is: ';
-var result = add(number1, number2, printResult, resultPhrase);
+function printResult(num) {
+    console.log('Result: ' + num);
+    // return num;
+}
+printResult(add(5, 12));
+var someValue; // number 인 인자인수? 를받고 number 로리턴한다라고 명시적 정의
+// someValue = add;
+// someValue = printResult;
+// someValue = 5;
+console.log(someValue(7, 8));

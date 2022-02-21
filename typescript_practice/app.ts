@@ -1,16 +1,16 @@
-function add(n1: number, n2: number, showResult: boolean, resultPhrase : string) {
-  const result = n1+n2;
-  if (showResult) {
-    console.log(resultPhrase + result);
-  } else {
+function add(n1 : number, n2 : number){
     return n1 + n2;
-  }
 }
 
-let number1 : number;
-number1 = 5;
-const number2 = 2.8;
-const printResult = true;
-let resultPhrase = 'Result is: ';
-resultPhrase = 0;
-const result = add(number1, number2, printResult, resultPhrase);
+function printResult(num: number){
+    console.log('Result: ' + num);
+    // return num;
+}
+
+printResult(add(5,12));
+
+let someValue : (a: number, b: number)=> number; // number 인 인자인수? 를받고 number 로리턴한다라고 명시적 정의
+someValue = add;
+// someValue = printResult;
+// someValue = 5;
+console.log(someValue(7, 8));
