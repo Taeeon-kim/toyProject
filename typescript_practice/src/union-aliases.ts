@@ -19,6 +19,7 @@ function combine(
   }
   return result;
 }
+console.log(combine(1,2,"as-number"))
 
 enum Role {
   ADMIN = "ADMIN",
