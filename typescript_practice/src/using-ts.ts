@@ -6,10 +6,10 @@ function add(num1: number, num2: number) {
   return num1 + num2;
 }
 
-function clickHandler(message:string){
-  console.log('Click'+message);
+function clickHandler(message: string) {
+  console.log("Click" + message);
 }
 
-button.addEventListener("click", clickHandler.bind(null,'1'));
+button.addEventListener("click", clickHandler.bind(null, "1"));
 
 const map = new Map();

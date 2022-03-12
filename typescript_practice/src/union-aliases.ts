@@ -1,5 +1,3 @@
-
-
 type Combinable = number | string;
 type ConversionDescriptor = "as-number" | "as-text";
 
@@ -19,7 +17,7 @@ function combine(
   }
   return result;
 }
-console.log(combine(1,2,"as-number"))
+console.log(combine(1, 2, "as-number"));
 
 enum Role {
   ADMIN = "ADMIN",
@@ -48,4 +46,3 @@ console.log(person.name);
 if (person.role === Role.ADMIN) {
   console.log("is admin");
 }
-
