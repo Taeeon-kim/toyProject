@@ -1,5 +1,6 @@
 const express = require("express");
 const axios = require("axios");
+const { header } = require("express/lib/request");
 const app = express();
 // console.log(axios)
 const currentPut = async () => {
@@ -30,6 +31,7 @@ app.get("/beauty", function (request, response) {
 
 app.get("/",  (req, res) =>{
   currentPut().then((response)=>{
+
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.json(response.data.response.body.items.item); // json을 하면 response 응답으로 해당 경로에있는 데이터를 data 안에 담아서 준다.
     // console.log(response.data.response.body.items.item);

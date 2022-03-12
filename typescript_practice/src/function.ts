@@ -12,6 +12,7 @@ function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
   return cb(result);
 }
 
+printResult(6)
 // printResult(add(5, 12));
 
 let someValue: (a: number, b: number) => number; // number 인 argument 를받고 number 로리턴한다라고 명시적 정의

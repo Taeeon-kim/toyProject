@@ -1,2 +1,5 @@
 "use strict";
-console.log("Sending...our team..");
+function sendAnalytics(data) {
+    console.log(data);
+}
+sendAnalytics('The data');

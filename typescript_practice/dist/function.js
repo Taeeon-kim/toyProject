@@ -6,6 +6,7 @@ function addAndHandle(n1, n2, cb) {
     const result = n1 + n2;
     return cb(result);
 }
+printResult(6);
 let someValue;
 addAndHandle(10, 20, (result) => {
     console.log(result);
