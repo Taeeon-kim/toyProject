@@ -6,6 +6,7 @@ function addAndHandle(n1, n2, cb) {
     const result = n1 + n2;
     return cb(result);
 }
+printResult(6);
 let someValue;
 addAndHandle(10, 20, (result) => {
     console.log(result);
@@ -13,7 +14,7 @@ addAndHandle(10, 20, (result) => {
 function sendRequest(data, cb) {
     return cb({ data: "Success" });
 }
-sendRequest('Send this!', (response) => {
+sendRequest("Send this!", (response) => {
     console.log(response);
     return true;
 });

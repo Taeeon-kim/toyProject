@@ -7,7 +7,6 @@
 //   }
 // }
 
-
 // let number1 : number;
 // number1 = 5;
 // const number2 = 2.8;

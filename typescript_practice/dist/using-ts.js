@@ -5,7 +5,8 @@ const input2 = document.getElementById("num2");
 function add(num1, num2) {
     return num1 + num2;
 }
-button.addEventListener("click", function () {
-    console.log("button is clicked!");
-});
+function clickHandler(message) {
+    console.log("Click" + message);
+}
+button.addEventListener("click", clickHandler.bind(null, "1"));
 const map = new Map();
