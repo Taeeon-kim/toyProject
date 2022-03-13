@@ -14,7 +14,7 @@ addAndHandle(10, 20, (result) => {
 function sendRequest(data, cb) {
     return cb({ data: "Success" });
 }
-sendRequest('Send this!', (response) => {
+sendRequest("Send this!", (response) => {
     console.log(response);
     return true;
 });

@@ -6,7 +6,7 @@ function add(num1, num2) {
     return num1 + num2;
 }
 function clickHandler(message) {
-    console.log('Click' + message);
+    console.log("Click" + message);
 }
-button.addEventListener("click", clickHandler.bind(null, '1'));
+button.addEventListener("click", clickHandler.bind(null, "1"));
 const map = new Map();
