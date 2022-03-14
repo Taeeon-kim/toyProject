@@ -5,7 +5,7 @@
 
 Frontend
 =======
-리액트, 바닐라자바스크립트, CSS, HTML 
+리액트, 바닐라자바스크립트, 타입스크립트, CSS, HTML 
 
 Backend
 =======
