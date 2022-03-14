@@ -3,6 +3,7 @@ import "./App.css";
 import person from "./person";
 import React from "react";
 import axios from "axios";
+
 function App() {
   class Human {
     gender = "male";
@@ -53,6 +54,7 @@ function App() {
   const { a, b, ...c } = { b: 10, c: 20, d: 30, a: 4, e: 100 };
   console.log(a, b, c);
   const [info, setInfo] = React.useState([{ 거래금액: 20000 }]);
+  const [colorState, setColorState]=React.useState(true)
   React.useEffect(() => {
     axios.get("http://localhost:8080/").then((res) => {
       setInfo(res.data);
@@ -62,7 +64,11 @@ function App() {
   let ba = " ";
   console.log(ba.trim().length);
   const test = (event)=>{
-    console.log(event.target.value, event.target.value.trim().length)
+    if(event.target.value.trim()){
+      return setColorState(false)
+    }
+      setColorState(true)
+   
   }
   return (
     <div className="App">
@@ -81,7 +87,7 @@ function App() {
           <span style={{ color:  info.length > 0 ?"red":"salmon" }}>dddd</span>
         </div>,
       ]}
-      <input type="text" onChange={test}></input>
+      <input type="text" onChange={test} style={{ backgroundColor:  colorState?"red":"blue" }}></input>
     </div>
   );
 }
