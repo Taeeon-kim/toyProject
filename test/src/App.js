@@ -4,63 +4,66 @@ import person from "./person";
 import React from "react";
 import axios from "axios";
 function App() {
-  class Human{
-    
-      gender='male'
-   
-      printGender=()=>{
-      console.log(this.gender)
-    }
+  class Human {
+    gender = "male";
+
+    printGender = () => {
+      console.log(this.gender);
+    };
   }
-  class Person extends Human{
-    
-      name = "naa";
-    
+  class Person extends Human {
+    name = "naa";
+
     printMyname() {
       console.log(this.name);
     }
   }
 
-  const person={
-    name:"Maxx"
-  }
+  const person = {
+    name: "Maxx",
+  };
 
-  const newperson={
+  const newperson = {
     ...person,
-    age:20
-  }
-  person.name='ms'
-  console.log(person)
-console.log(newperson)
+    age: 20,
+  };
+  person.name = "ms";
+  console.log(person);
+  console.log(newperson);
 
-const filter =(...args)=>{
-  console.log(...args)
-  return args.sort()
-}
+  const filter = (...args) => {
+    console.log(...args);
+    return args.sort();
+  };
 
-console.log(filter(3,1,4,2))
+  console.log(filter(3, 1, 4, 2));
   const myPerson = new Person();
 
   myPerson.printMyname();
   myPerson.printGender();
-const oldArray =[1,2,4]
-const newArray =[...oldArray,10]
-console.log(newArray)
-oldArray[0]=0
-console.log(oldArray)
-const numbers=[1,2];
- const [num1, num2]= numbers;
-console.log(num1,num2)
+  const oldArray = [1, 2, 4];
+  const newArray = [...oldArray, 10];
+  console.log(newArray);
+  oldArray[0] = 0;
+  console.log(oldArray);
+  const numbers = [1, 2];
+  const [num1, num2] = numbers;
+  console.log(num1, num2);
 
-const {a,b,...c} ={b:10,c:20, d:30, a:4,e:100}
-console.log(a,b,c)
-  const [info, setInfo] = React.useState([]);
+  const { a, b, ...c } = { b: 10, c: 20, d: 30, a: 4, e: 100 };
+  console.log(a, b, c);
+  const [info, setInfo] = React.useState([{ 거래금액: 20000 }]);
   React.useEffect(() => {
     axios.get("http://localhost:8080/").then((res) => {
       setInfo(res.data);
     });
   }, []);
   console.log(info);
+  let ba = " ";
+  console.log(ba.trim().length);
+  const test = (event)=>{
+    console.log(event.target.value, event.target.value.trim().length)
+  }
   return (
     <div className="App">
       {info
@@ -72,6 +75,13 @@ console.log(a,b,c)
             );
           })
         : null}
+      {[
+        <div style={{ color: info.length > 0 ? "yellow" : "blue" }}>gg</div>,
+        <div>
+          <span style={{ color:  info.length > 0 ?"red":"salmon" }}>dddd</span>
+        </div>,
+      ]}
+      <input type="text" onChange={test}></input>
     </div>
   );
 }
