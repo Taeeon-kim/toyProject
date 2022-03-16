@@ -3,7 +3,7 @@ import "./App.css";
 import person from "./person";
 import React from "react";
 import axios from "axios";
-
+import './input.css'
 function App() {
   class Human {
     gender = "male";
@@ -64,6 +64,7 @@ function App() {
   let ba = " ";
   console.log(ba.trim().length);
   const test = (event)=>{
+    console.log(event.target.value)
     if(event.target.value.trim()){
       return setColorState(false)
     }
@@ -87,7 +88,10 @@ function App() {
           <span style={{ color:  info.length > 0 ?"red":"salmon" }}>dddd</span>
         </div>,
       ]}
-      <input type="text" onChange={test} style={{ backgroundColor:  colorState?"red":"blue" }}></input>
+      <div className={`form-control ${colorState?'invalid':''}`}>
+        <label>course goal</label>
+      <input type="text" onChange={test} ></input>
+      </div>
     </div>
   );
 }
