@@ -1,13 +1,26 @@
-import styled, {keyframes}  from "styled-components"
-
+import React, {useState} from 'react'
+import styled, { keyframes } from "styled-components";
+import AddUser from "./users/AddUser";
+import Card from "./UI/Card";
+import UserList from "./users/UserList";
+// import classes from "./App.css";
 function App() {
+  const [userList, setUserList]= useState([]);
+
+  const addUserHandler = (uName, uAge)=>{
+    setUserList((prevUserList)=>{
+      return [...prevUserList, {name: uName, age: uAge, id: Math.random().toString()}];
+    });
+  }
+  console.log(userList)
   return (
-    <div className="App">
-      <Box></Box>
+    <div>
+      <AddUser onAddUser={addUserHandler}/>
+      <UserList users={userList} />
     </div>
   );
+  // <Card className={classes.input}></Card>;
 }
-
 
 const boxAnimation = keyframes`
   0%{ border-radius: 0px;
@@ -27,18 +40,16 @@ const boxAnimation = keyframes`
 
 `;
 
-
 const Box = styled.div`
   width: 100px;
-  height : 100px;
+  height: 100px;
   background: green;
   border-radius: 0px;
 
   position: absolute;
-  top : 20px;
+  top: 20px;
   left: 20px;
-  animation: ${boxAnimation} 2s 1s infinite linear alternate
-
+  animation: ${boxAnimation} 10s 10s infinite linear alternate;
 `;
 
 export default App;
