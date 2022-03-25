@@ -1,11 +1,28 @@
 "use strict";
-let useInput;
-let userName;
-useInput = "ma";
-if (typeof useInput === "string") {
-    userName = useInput;
+class Department {
+    constructor(n) {
+        this.name = n;
+    }
 }
-function ErrorMessage(message, code) {
-    throw { message: message, errorCode: code };
+const accounting = new Department("accounting");
+console.log(accounting);
+var result;
+result = 1;
+function add1(a = 1, b) {
+    var result = a + b;
+    return result;
 }
-ErrorMessage('this is Error test', 500);
+const hobbies = ["sport", "cooking"];
+const active = ["swim"];
+active.push(...hobbies);
+console.log(active);
+const dds = (...numbers) => {
+    console.log(numbers);
+};
+const bdd = dds(5, 10, 2, 3.7);
+const person1 = {
+    firstName: 'Max',
+    age: 30
+};
+const { firstName: userName, age } = person1;
+console.log(person1);
