@@ -56,8 +56,8 @@ function App() {
   const [info, setInfo] = React.useState([{ 거래금액: 20000 }]);
   const [colorState, setColorState]=React.useState(true)
   React.useEffect(() => {
-    axios.get("http://localhost:8080/").then((res) => {
-      setInfo(res.data);
+    axios.get("http://localhost:8080/carClasses").then((res) => {
+      console.log(res.data)
     });
   }, []);
   console.log(info);
