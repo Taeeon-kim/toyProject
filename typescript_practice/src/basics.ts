@@ -1,15 +1,10 @@
-// function add(n1: number, n2: number, showResult: boolean, resultPhrase : string) {
-//   const result = n1+n2;
-//   if (showResult) {
-//     console.log(resultPhrase + result);
-//   } else {
-//     return n1 + n2;
-//   }
-// }
+import {person, person_array} from './type'
 
-// let number1 : number;
-// number1 = 5;
-// const number2 = 2.8;
-// const printResult = true;
-// let resultPhrase = 'Result is: ';
-// const result = add(number1, number2, printResult, resultPhrase);
+let hobbiees : string[];
+
+let person2 :person;
+
+let people :person_array;
+people=[{name:"name", age: 15},{name:"Max", age:20}];
+person2 = {name:"zz", age:1};
+
