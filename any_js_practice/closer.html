@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <script>
+            (function(){
+                let count = 0;
+                let button = document.createElement('button');
+                button.innerText='click';
+                let clickhandler =function(){
+                    console.log(++count, 'times clicked')
+                    if(count>=5){
+                        button.removeEventListener('click', clickhandler );
+                        clickhandler = null; // 함수 참조 끊고 클로저 해제
+                        
+                    }
+                }
+                button.addEventListener('click', clickhandler)
+                document.body.appendChild(button);
+                
+
+            })()
+        </script>
+    </body>
+</html>
