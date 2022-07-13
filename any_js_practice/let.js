@@ -1,6 +1,8 @@
 let a ="";
 if(true){
     let a =2; //재 선언시 이 블록안에서만의 새로운 ㅁ로 선언, 할당됨
+    a = 3;
+    console.log(a)
 }
 function inits (){
 if(true){
